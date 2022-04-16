@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import Body from '../views/Body.vue'
 import Grid from '../views/Grid.vue'
 import Login from '../views/Login.vue'
 import SS from '../views/SS.vue'
@@ -9,9 +9,9 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
-    component: HomeView
+    path: '/home',
+    name: 'body',
+    component: Body
   },
   {
     path: '/about',

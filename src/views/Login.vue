@@ -61,3 +61,8 @@ export default {
   methods: {},
 };
 </script>
+<style scoped>
+  #inspire{
+    background-color:pink;
+  }
+</style>
