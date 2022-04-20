@@ -1,17 +1,16 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Body from '../views/Body.vue'
+import Home from '../views/Home.vue'
 import Grid from '../views/Grid.vue'
-import Login from '../views/Login.vue'
-import SS from '../views/SS.vue'
+import MyPage from '../views/MyPage.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/home',
-    name: 'body',
-    component: Body
+    path: '/',
+    name: 'home',
+    component: Home
   },
   {
     path: '/about',
@@ -27,15 +26,10 @@ const routes = [
     component: Grid
   },
   {
-    path: '/login',
-    name: 'login',
-    component: Login
+    path: '/mypage',
+    name: 'mypage',
+    component: MyPage
   },
-  {
-    path: '/ss',
-    name: 'ss',
-    component: SS
-  }
 ]
 
 const router = new VueRouter({

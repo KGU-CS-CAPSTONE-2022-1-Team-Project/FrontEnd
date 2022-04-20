@@ -1,16 +1,7 @@
 <template>
-  <div id="app">
-  <v-app dark>
-    <v-container fluid >
-        <Header />
-        <v-main>
-            <!-- <Body /> -->
-            <router-view></router-view>
-        </v-main>        
-      <Footer />
-    </v-container> 
+  <v-app id="inspire">
+        <Header /> 
   </v-app>
-</div>
 </template>
 <script>
 import Header from './components/Header.vue'
@@ -22,7 +13,7 @@ export default {
   }),
   components : {
     Header,
-    Footer
+    Footer,
   }
 };
 </script>
