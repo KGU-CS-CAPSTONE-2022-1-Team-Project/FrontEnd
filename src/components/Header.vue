@@ -22,8 +22,7 @@
         <v-tab>
           <router-link to="/grid">Grid</router-link>
         </v-tab>
-      </v-tabs>
-      ||
+
           <!--로그인 상태-->
           <v-tab v-if= true>
             <router-link to="/mypage">MyPage</router-link>
@@ -35,6 +34,8 @@
           <v-tab v-if= true>
             <button id="bt" v-on:click="login">LOGIN</button>
           </v-tab>
+      </v-tabs>
+
       <!--
       <v-avatar 
         class="hidden-sm-and-down"
