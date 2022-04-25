@@ -2,211 +2,84 @@
   <v-card
     color="blue-grey darken-1"
     dark
-    :loading="isUpdating"
   >
-    <template v-slot:progress>
-      <v-progress-linear
-        absolute
-        color="green lighten-3"
-        height="4"
-        indeterminate
-      ></v-progress-linear>
-    </template>
-    <!-- <v-img
-      height="200"
-      src="https://cdn.vuetifyjs.com/images/cards/dark-beach.jpg"
-    >
-      <v-row>
-        <v-col
-          class="text-right"
-          cols="12"
-        >
-          <v-menu
-            bottom
-            left
-            transition="slide-y-transition"
-          >
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn
-                icon
-                v-bind="attrs"
-                v-on="on"
-              >
-                <v-icon>mdi-dots-vertical</v-icon>
-              </v-btn>
-            </template>
-            <v-list>
-              <v-list-item @click="isUpdating = true">
-                <v-list-item-action>
-                  <v-icon>mdi-cog</v-icon>
-                </v-list-item-action>
-                <v-list-item-content>
-                  <v-list-item-title>Update</v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-            </v-list>
-          </v-menu>
+    <v-row :style="{marginTop: '50px'}">
+      <v-col cols="12" md="2" />
+        <v-col cols="12" md="2"> <!-- 아래 v-select 부분이 카테고리 부분-->
+          <v-select
+              :items="searchoption"
+              v-model="searchoptionselected"
+              :style="{width:'100px', marginLeft:'90px'}" />
         </v-col>
-        <v-row
-          class="pa-4"
-          align="center"
-          justify="center"
-        >
-          <v-col class="text-center">
-            <h3 class="text-h5">
-              {{ name }}
-              <h2></h2>
-            </h3>
-            <span class="grey--text text--lighten-1">{{ title }}</span>
-          </v-col>
-        </v-row>
-      </v-row>
-    </v-img> -->
-    <v-form>
-      <v-container>
-        <v-row>
-          <v-col
-            cols="12"
-            md="6"
-          >
-            <v-text-field
-              v-model="name"
-              :disabled="isUpdating"
-              filled
-              color="blue-grey lighten-2"
-              label="Name"
-            ></v-text-field>
-          </v-col>
-          <v-col
-            cols="12"
-            md="6"
-          >
-            <v-text-field
-              v-model="title"
-              :disabled="isUpdating"
-              filled
-              color="blue-grey lighten-2"
-              label="Title"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12">
-            <v-autocomplete
-              v-model="friends"
-              :disabled="isUpdating"
-              :items="people"
-              filled
-              chips
-              color="blue-grey lighten-2"
-              label="Select"
-              item-text="name"
-              item-value="name"
-              multiple
-            >
-              <template v-slot:selection="data">
-                <v-chip
-                  v-bind="data.attrs"
-                  :input-value="data.selected"
-                  close
-                  @click="data.select"
-                  @click:close="remove(data.item)"
-                >
-                  <v-avatar left>
-                    <v-img :src="data.item.avatar"></v-img>
-                  </v-avatar>
-                  {{ data.item.name }}
-                </v-chip>
-              </template>
-              <template v-slot:item="data">
-                <template v-if="typeof data.item !== 'object'">
-                  <v-list-item-content v-text="data.item"></v-list-item-content>
-                </template>
-                <template v-else>
-                  <v-list-item-avatar>
-                    <img :src="data.item.avatar">
-                  </v-list-item-avatar>
-                  <v-list-item-content>
-                    <v-list-item-title v-html="data.item.name"></v-list-item-title>
-                    <v-list-item-subtitle v-html="data.item.group"></v-list-item-subtitle>
-                  </v-list-item-content>
-                </template>
-              </template>
-            </v-autocomplete>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-form>
-    <v-divider></v-divider>
-    <v-card-actions>
-      <v-switch
-        v-model="autoUpdate"
-        :disabled="isUpdating"
-        class="mt-0"
-        color="green lighten-2"
-        hide-details
-        label="Auto Update"
-      ></v-switch>
-      <v-spacer></v-spacer>
-      <v-btn
-        :disabled="autoUpdate"
-        :loading="isUpdating"
-        color="blue-grey darken-3"
-        depressed
-        @click="isUpdating = true"
-      >
-        <v-icon left>
-          mdi-update
-        </v-icon>
-        Update Now
-      </v-btn>
-    </v-card-actions>
+        <v-col cols="12" md="4">
+          <v-text-field v-model="searchkeyword" dense outlined label="검색키워드" 
+            full-width :style="{marginTop:'10px'}"/>
+        </v-col>
+        <v-col cols="12" md="1">
+          <v-btn @click="searchstart" :style="{marginTop:'10px'}">검색</v-btn>
+        </v-col>
+        <v-col cols="12" md="3" />
+    </v-row>
+<!--위는 검색창 아래는 검색 후 결과-->
+    <v-row v-if="searchfinish===true" :style="{marginTop:'0px'}">
+      <v-col cols="12" md="5"/>
+      <v-col cols="12" md="2">
+          <div style="font-size: x-large">검색결과 : {{searchcnt}} 개</div>
+      </v-col>
+      <v-col cols="12" md="5"/>
+    </v-row>
+      <!-- 여기서부터는 게시판 페이지와 거의 일치, 검색완료시에만 표가 나타나게 했고, 게시판 번호 표시 -->
   </v-card>
 </template>
 <script>
+import EventBus from '../js/EventBus'
   export default {
-    data () {
-      const srcs = {
-        1: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
-        2: 'https://cdn.vuetifyjs.com/images/lists/2.jpg',
-        3: 'https://cdn.vuetifyjs.com/images/lists/3.jpg',
-        4: 'https://cdn.vuetifyjs.com/images/lists/4.jpg',
-        5: 'https://cdn.vuetifyjs.com/images/lists/5.jpg',
+    data() {
+    return {
+      clickedCount: 0,
+      searchkeyword:'',			// 검색키워드
+      searchfinish: false,		// 검색완료시 true로 바뀌고, 이때부터 표 생성
+      searchoption: ['통합검색','제목','스트리머','등록자'],	// 검색옵션
+      searchoptionselected: '통합검색',	// 검색옵션값 받아오기, 기본값은 제목으로 지정
+      searchcnt: 0,			// 검색된 게시글 갯수
+      contentlist: [],			// 게시글 리스트
+    }
+  },
+  movetocontent(boardnum, id) {	// 검색된 게시글 클릭시 해당 게시글로 이동
+	  window.location.href = 'http://127.0.0.1:8080/board/' + boardnum + '/content?id=' + id
+  },
+  methods:{
+    handleGlobalClickButton(){
+      this.clickedCount++;
+      console.log("이벤트 송신");
+      EventBus.$emit('use-eventbus',this.clickedCount);
+    },
+    searchstart(){			// 검색버튼 눌렀을때 실행
+    let searchoption= this.searchoptionselected;
+    let searchkeyword= this.searchkeyword;
+    console.log(searchkeyword);
+    console.log(searchoption);
+      if(this.searchoptionselected=='제목'){
+        EventBus.$emit('event-flag',1);
+        EventBus.$emit('event-keyword',this.searchkeyword);
       }
-
-      return {
-        autoUpdate: true,
-        friends: ['Sandra Adams', 'Britta Holt'],
-        isUpdating: false,
-        name: 'Midnight Crew',
-        people: [
-          { header: 'Group 1' },
-          { name: 'Sandra Adams', group: 'Group 1', avatar: srcs[1] },
-          { name: 'Ali Connors', group: 'Group 1', avatar: srcs[2] },
-          { name: 'Trevor Hansen', group: 'Group 1', avatar: srcs[3] },
-          { name: 'Tucker Smith', group: 'Group 1', avatar: srcs[2] },
-          { divider: true },
-          { header: 'Group 2' },
-          { name: 'Britta Holt', group: 'Group 2', avatar: srcs[4] },
-          { name: 'Jane Smith ', group: 'Group 2', avatar: srcs[5] },
-          { name: 'John Smith', group: 'Group 2', avatar: srcs[1] },
-          { name: 'Sandra Williams', group: 'Group 2', avatar: srcs[3] },
-        ],
-        title: 'The summer breeze',
+      else if(this.searchoptionselected=='스트리머'){
+        EventBus.$emit('event-flag',2);
+        EventBus.$emit('event-keyword',this.searchkeyword);
       }
-    },
-
-    watch: {
-      isUpdating (val) {
-        if (val) {
-          setTimeout(() => (this.isUpdating = false), 3000)
-        }
-      },
-    },
-
-    methods: {
-      remove (item) {
-        const index = this.friends.indexOf(item.name)
-        if (index >= 0) this.friends.splice(index, 1)
-      },
-    },
+      else if(this.searchoptionselected=='등록자'){
+        EventBus.$emit('event-flag',3);
+        EventBus.$emit('event-keyword',this.searchkeyword);
+      }
+      else if(this.searchoptionselected=='통합검색'){
+        EventBus.$emit('event-flag',0);
+        EventBus.$emit('event-keyword',this.searchkeyword);
+      }
+      else{
+        EventBus.$emit('event-flag',0);
+        EventBus.$emit('event-keyword',this.searchkeyword);
+      }
+    }
   }
+}
 </script>
