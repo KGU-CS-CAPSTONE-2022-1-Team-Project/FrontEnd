@@ -11,3 +11,5 @@ FrontEnd
             Footer 및 Logo 미완성  (GunHoi)
 
 22.04.21 - Grid 추가(무한 스크롤 구현), Search 바 추가
+
+22.04.25 - Search바 구현
