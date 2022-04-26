@@ -39,7 +39,7 @@ import EventBus from '../js/EventBus'
       clickedCount: 0,
       searchkeyword:'',			// 검색키워드
       searchfinish: false,		// 검색완료시 true로 바뀌고, 이때부터 표 생성
-      searchoption: ['통합검색','제목','스트리머','등록자'],	// 검색옵션
+      searchoption: ['통합검색','제목','스트리머','제작자'],	// 검색옵션
       searchoptionselected: '통합검색',	// 검색옵션값 받아오기, 기본값은 제목으로 지정
       searchcnt: 0,			// 검색된 게시글 갯수
       contentlist: [],			// 게시글 리스트
@@ -67,7 +67,7 @@ import EventBus from '../js/EventBus'
         EventBus.$emit('event-flag',2);
         EventBus.$emit('event-keyword',this.searchkeyword);
       }
-      else if(this.searchoptionselected=='등록자'){
+      else if(this.searchoptionselected=='제작자'){
         EventBus.$emit('event-flag',3);
         EventBus.$emit('event-keyword',this.searchkeyword);
       }
