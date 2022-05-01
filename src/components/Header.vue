@@ -11,6 +11,7 @@
         rounded
       >Logo</v-avatar>
       <!-- v-tabs 중앙은 centerd / 오른쪽은 right-->
+      <GoHome v-if="$route.name == 'home'">asd</GoHome>
       <v-tabs
         right
         class="ml-n9"
@@ -46,7 +47,7 @@
     </v-app-bar>
 
     <v-main class="grey lighten-3">
-      <v-container>
+      
         <v-row>
           <!--
           <v-col
@@ -89,12 +90,12 @@
             </v-sheet>
           </v-col>-->
         </v-row>
-      </v-container>
     </v-main>
   </v-app>
 </template>
 
 <script>
+import GoHome from '../components/GoHome.vue'
   export default {
     name: 'App',
     data: {
@@ -103,6 +104,7 @@
       }
     },
     components : {  
+      GoHome
     },
     methods: {
     login: function() {
