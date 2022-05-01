@@ -15,3 +15,5 @@ FrontEnd
 22.04.25 - Search바 구현(미완성)
 
 22.04.26 - Search바 및 Grid 완성
+
+22.05.02 - Home 화면 Frame 구성중
