@@ -2,31 +2,31 @@
   <v-app id="inspire">
     <v-app-bar
       app
-      color="white"
+      color="black"
       flat
     >
       <v-avatar
         :color="$vuetify.breakpoint.smAndDown ? 'grey darken-1' : 'transparent'"
         size="50"
         rounded
-      >Logo</v-avatar>
-      <!-- v-tabs 중앙은 centerd / 오른쪽은 right-->
-      <GoHome v-if="$route.name == 'home'">asd</GoHome>
+      ><v-img src="../assets/logo_origin.png"></v-img></v-avatar>
+      <!-- v-tabs 중앙은 centerd / 오른쪽은 right
+      <GoHome v-if="$route.name == 'home'">asd</GoHome>-->
       <v-tabs
         right
         class="ml-n9"
-        color="grey darken-1"
+        color="white"
       >
         <v-tab>
-          <router-link to="/">Home</router-link>
+          <router-link class="routerlink" to="/home">Home</router-link>
         </v-tab>
         <v-tab>
-          <router-link to="/grid">Grid</router-link>
+          <router-link class="routerlink" to="/grid">Grid</router-link>
         </v-tab>
 
           <!--로그인 상태-->
           <v-tab v-if= true>
-            <router-link to="/mypage">MyPage</router-link>
+            <router-link class="routerlink" to="/mypage">MyPage</router-link>
           </v-tab>
           <v-tab v-if= true>
             <button id="bt" v-on:click="logout">LOGOUT</button>
@@ -125,12 +125,19 @@ import GoHome from '../components/GoHome.vue'
 </script>
 
 <style scoped>
-    a{ 
-    text-decoration: none;
-    color:black;
+  .routerlink{
+    color:#757575;
+  }
+
+  a{
+    text-decoration: none; 
     font-size:larger;
   }
   #bt{
-    color: blue;
+    color: #757575;
+  }
+  .router-link-active{
+    color: white;
+  
   }
 </style>

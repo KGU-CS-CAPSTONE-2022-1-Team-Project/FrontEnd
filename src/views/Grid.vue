@@ -1,9 +1,9 @@
 <template>
   <v-app>
     <SearchBar />
-      <v-row>
+      <v-row id="vrow">
         <v-col id="CARD" v-for="(post, index) in posts" :key="index">
-        <v-card  class="text-center" style="height: flex; width: 18rem;">
+        <v-card  id="cd" class="text-center" style="height: flex; width: 18rem;">
           <img id="IMG" v-bind:src="post.img" alt style="width:280px; height:280px;">
           <div class="card-body">
             <v-card class="text-left" title id="Title"><pre><strong>{{ post.title }}</strong>       {{"스트리머: "+post.streamer}}</pre></v-card>
@@ -143,9 +143,19 @@ export default {
 }
 </script>
 <style scoped>
+  #vrow{
+  overflow: hidden;
+  margin:0;
+  background-image: url("../assets/bgg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  }
   #Title{
     padding-left: 15px;
     font-size: 18px;
+    background-color: rgb(20, 20, 20);
+    color:white;
   }
   #CARD{
     padding : 50px;
@@ -153,5 +163,9 @@ export default {
   #IMG{
     height: flex;
     text-align: center;
+  }
+  #cd{
+    background-color:rgb(30, 30, 30);
+    color:white;
   }
 </style>

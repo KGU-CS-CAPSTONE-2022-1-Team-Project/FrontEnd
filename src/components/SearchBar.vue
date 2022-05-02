@@ -1,22 +1,19 @@
 <template>
-  <v-card
-    color="blue-grey darken-1"
-    dark
-  >
+  <v-row id="vr">
     <v-row :style="{marginTop: '50px'}">
       <v-col cols="12" md="2" />
         <v-col cols="12" md="2"> <!-- 아래 v-select 부분이 카테고리 부분-->
-          <v-select
+          <v-select background-color=#404040 class="vselect" color=white
               :items="searchoption"
               v-model="searchoptionselected"
               :style="{width:'100px', marginLeft:'90px'}" />
         </v-col>
         <v-col cols="12" md="4">
-          <v-text-field v-model="searchkeyword" dense outlined label="검색키워드" 
+          <v-text-field v-model="searchkeyword" dense outlined label="검색키워드" color=#808080 background-color= #404040
             full-width :style="{marginTop:'10px'}"/>
         </v-col>
         <v-col cols="12" md="1">
-          <v-btn @click="searchstart" :style="{marginTop:'10px'}">검색</v-btn>
+          <v-btn id="bt" @click="searchstart" :style="{marginTop:'10px'}">검색</v-btn>
         </v-col>
         <v-col cols="12" md="3" />
     </v-row>
@@ -29,7 +26,7 @@
       <v-col cols="12" md="5"/>
     </v-row>
       <!-- 여기서부터는 게시판 페이지와 거의 일치, 검색완료시에만 표가 나타나게 했고, 게시판 번호 표시 -->
-  </v-card>
+  </v-row>
 </template>
 <script>
 import EventBus from '../js/EventBus'
@@ -83,3 +80,19 @@ import EventBus from '../js/EventBus'
   }
 }
 </script>
+<style scoped>
+  .vselect{
+    border-radius:3px;
+  }
+
+  #vr{
+    background-color: rgb(2, 2, 2);
+  }
+  #cl{
+    background-color:red
+  }
+  #bt{
+    background-color: #404040;
+    color:white;
+  }
+</style>

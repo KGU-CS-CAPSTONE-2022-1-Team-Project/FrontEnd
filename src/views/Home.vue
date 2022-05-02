@@ -27,19 +27,23 @@
           <h3>저쩌구</h3>
         </div>
         <div class="div" ref="div3">
-          <v-btn id="bt">
-            <v-icon>mdi-information-outline</v-icon> Help
-          </v-btn>
-          <v-btn id="bt">
-            <v-icon>mdi-image-search-outline</v-icon>
-            <router-link to="/grid">More...</router-link>
-          </v-btn>
-          <v-row class="justify-end">
-            <a id="ab" href="https://www.kyonggi.ac.kr"><v-icon large>mdi-school-outline</v-icon></a>
-            <a id="ab" href="https://www.facebook.com"><v-icon large>mdi-facebook</v-icon></a>
-            <a id="ab" href="https://www.instagram.com"><v-icon large> mdi-instagram</v-icon></a>
-            <a id="ab" href="https://www.twitter.com"><v-icon large>mdi-twitter</v-icon></a>
+          <v-row class="vrow">
+          <a id="bt">
+            <v-icon dark>mdi-information-outline</v-icon> 
+            <router-link class="routerlink" to="/about"> HELP </router-link>
+          </a>
+          <a id="bt">
+            <v-icon dark>mdi-image-search-outline</v-icon>
+            <router-link class="routerlink" to="/grid">More...</router-link>
+          </a>
           </v-row>
+          <v-row class="justify-end">
+            <a id="icon" href="https://www.kyonggi.ac.kr"><v-icon large dark>mdi-school-outline</v-icon></a>
+            <a id="icon" href="https://www.facebook.com"><v-icon large dark>mdi-facebook</v-icon></a>
+            <a id="icon" href="https://www.instagram.com"><v-icon large dark> mdi-instagram</v-icon></a>
+            <a id="icon" href="https://www.twitter.com"><v-icon large dark>mdi-twitter</v-icon></a>
+          </v-row>
+  
           <router-view></router-view>
         </div>
       </div>
@@ -79,26 +83,42 @@
   }
 </script>
 <style scoped>
+  .vrow{
+    justify-content:center;
+  }
+  .routerlink{
+    color:white;
+  }
+
+#app{
+    overflow: hidden;
+    margin:0;
+    background-image: url("../assets/bgg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
 .div {
   text-align: center;
   padding: 20px;
-  border: 2px solid yellow;
+  color:white;
 }
   #cl{
     margin-left: 120px;
   }
   #bt{
+    background-color:rgb(20,20,20);
     text-align: center;
     justify-content: space-between;
     border-style: solid;
-    margin: 30px 1px 30px 1px;
+    margin: 30px 50px 30px 50px;
     padding: 40px;
     border-color: white; 
     border-radius:5px 5px 5px 5px;
     border-width: 1px 1px 1px 1px;
     font-size: 20px;
   } 
-  #ab{ 
+  #icon{ 
     padding-left : 20px;
     text-decoration: none;
     font-weight: bolder;

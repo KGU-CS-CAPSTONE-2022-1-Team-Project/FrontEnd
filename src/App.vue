@@ -1,5 +1,7 @@
 <template>
   <v-app id="inspire">
+    <div :style="{'background-image':'url(https://vuejs.org/images/logo.png)'}">
+  </div>
         <Header /> 
   </v-app>
 </template>
@@ -24,6 +26,12 @@ export default {
   #app{
     background: white;
   }
+  #box2-2{
+        width: 300px;
+        height: 150px;
+        background-image: url("assets/logo.png");
+    }
+
   /*
   a{ 
     text-decoration: none;
