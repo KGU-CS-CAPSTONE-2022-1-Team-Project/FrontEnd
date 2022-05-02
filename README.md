@@ -16,4 +16,6 @@ FrontEnd
 
 22.04.26 - Search바 및 Grid 완성
 
-22.05.02 - Home 화면 Frame 구성중
+22.05.01 - Home 화면 Frame 구성중
+
+22.05.02 - 전체적인 화면 색 입히기
