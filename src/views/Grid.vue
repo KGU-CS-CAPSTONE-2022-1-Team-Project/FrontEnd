@@ -144,14 +144,14 @@ export default {
 </script>
 <style scoped>
   #vrow{
-  overflow: hidden;
-  margin:0;
-  background-image: url("../assets/bgg.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+    overflow: hidden;
+    margin:0;
+    background-image: url("../assets/bgg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
   }
-  #Title{
+  #Title{ /* 카드 타이틀*/
     padding-left: 15px;
     font-size: 18px;
     background-color: rgb(20, 20, 20);
@@ -164,7 +164,7 @@ export default {
     height: flex;
     text-align: center;
   }
-  #cd{
+  #cd{  /* 카드 배경*/
     background-color:rgb(30, 30, 30);
     color:white;
   }

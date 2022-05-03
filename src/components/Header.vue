@@ -4,10 +4,11 @@
       app
       color="black"
       flat
+      height="70px"
     >
       <v-avatar
         :color="$vuetify.breakpoint.smAndDown ? 'grey darken-1' : 'transparent'"
-        size="50"
+        size="55"
         rounded
       ><v-img src="../assets/logo_origin.png"></v-img></v-avatar>
       <!-- v-tabs 중앙은 centerd / 오른쪽은 right
