@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Grid from '../views/Grid.vue'
 import MyPage from '../views/MyPage.vue'
+import LoginPage from '../views/LoginPage'
+import Register from '../views/Register'
 
 Vue.use(VueRouter)
 
@@ -30,6 +32,16 @@ const routes = [
     name: 'mypage',
     component: MyPage
   },
+  {
+    path: '/login',
+    name: 'LoginPage',
+    component: LoginPage
+  },
+  {
+    path: '/register',
+    name: 'RegisterPage',
+    component: Register
+  }
 ]
 
 const router = new VueRouter({
