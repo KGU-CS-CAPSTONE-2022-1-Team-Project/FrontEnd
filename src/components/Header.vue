@@ -26,15 +26,18 @@
         </v-tab>
 
           <!--로그인 상태-->
-          <v-tab v-if= true>
+          <v-tab v-if= false>
             <router-link class="routerlink" to="/mypage">MyPage</router-link>
           </v-tab>
-          <v-tab v-if= true>
-            <button id="bt" v-on:click="logout">LOGOUT</button>
+          <v-tab v-if= false>
+            <v-btn>Logout </v-btn>
           </v-tab>
           <!--로그 아웃 상태-->
           <v-tab v-if= true>
-            <button id="bt" v-on:click="login">LOGIN</button>
+            <router-link class="routerlink" style="font-size: small" to="/Register">Register</router-link>
+          </v-tab>
+          <v-tab v-if= true>
+            <router-link class="routerlink" style="font-size: small" to="/login">Login</router-link>
           </v-tab>
       </v-tabs>
 

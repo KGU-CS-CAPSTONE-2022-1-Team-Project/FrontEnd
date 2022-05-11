@@ -7,7 +7,6 @@
         <br />-->
         <v-row align="center" justify="center" v-bind:style="{ height: deviceHeight * 0.6 + 'px',}">
           <v-col cols="12" sm="10" ref="div1">
-            123
             <v-carousel
                hide-delimiters
                height = '800'
