@@ -11,8 +11,6 @@
         size="55"
         rounded
       ><v-img src="../assets/logo_origin.png"></v-img></v-avatar>
-      <!-- v-tabs 중앙은 centerd / 오른쪽은 right
-      <GoHome v-if="$route.name == 'home'">asd</GoHome>-->
       <v-tabs
         right
         class="ml-n9"
@@ -37,14 +35,6 @@
             <button id="bt" v-on:click="login">LOGIN</button>
           </v-tab>
       </v-tabs>
-
-      <!--
-      <v-avatar 
-        class="hidden-sm-and-down"
-        color="blue darken-1 shrink"
-        size="50"
-        rounded
-      ><button v-on:click="login">LOGIN</button></v-avatar>-->
     </v-app-bar>
 
     <v-main class="grey lighten-3">

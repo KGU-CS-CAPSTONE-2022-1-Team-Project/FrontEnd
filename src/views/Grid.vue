@@ -107,29 +107,6 @@ export default {
                   this.count++;
                   console.log(this.count+"결과가 없어요.");
                 }
-                /*
-                if ((nftData[i].title).includes(this.keyword)){
-                  this.posts.push(nftData[i])
-                  this.pushcount++;
-                  this.count++;
-                  console.log(this.count+"title 가능")
-                }
-                else if ((nftData[i].streamer).includes(this.keyword)){
-                  this.posts.push(nftData[i])
-                  this.pushcount++;
-                  this.count++;
-                  console.log(this.count+"streamer 가능")
-                }
-                else if ((nftData[i].maker).includes(this.keyword)){
-                  this.posts.push(nftData[i])
-                  this.pushcount++;
-                  this.count++;
-                  console.log(this.count+"maker 가능")
-                }
-                else{
-                  this.count++;
-                  console.log(this.count+"결과가 없어요.");
-                }*/
             }
             else{
               this.posts.push(nftData[i])

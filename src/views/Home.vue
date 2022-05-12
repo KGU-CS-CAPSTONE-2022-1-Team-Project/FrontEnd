@@ -1,10 +1,6 @@
 <template>
    <v-app>
-    <div id="app"><!--
-        <button @click="goto('div1')">Div 1</button>
-        <button @click="goto('div2')">Div 2</button>
-        <button @click="goto('div3')">Div 3</button>
-        <br />-->
+    <div id="app">
         <v-row align="center" justify="center" v-bind:style="{ height: deviceHeight * 0.6 + 'px',}">
           <v-col cols="12" sm="10" ref="div1">
             <v-carousel
@@ -27,26 +23,6 @@
           <h2>어쩌구</h2>
           <h3>저쩌구</h3>
         </div>
-        <!--
-        <div class="div" ref="div3">
-          
-          <v-row class="vrow">
-          <a id="bt">
-            <v-icon dark>mdi-information-outline</v-icon> 
-            <router-link class="routerlink" to="/about"> HELP </router-link>
-          </a>
-          <a id="bt">
-            <v-icon dark>mdi-image-search-outline</v-icon>
-            <router-link class="routerlink" to="/grid">More...</router-link>
-          </a>
-          </v-row>
-          <v-row class="justify-end">
-            <a id="icon" href="https://www.kyonggi.ac.kr"><v-icon large dark>mdi-school-outline</v-icon></a>
-            <a id="icon" href="https://www.facebook.com"><v-icon large dark>mdi-facebook</v-icon></a>
-            <a id="icon" href="https://www.instagram.com"><v-icon large dark> mdi-instagram</v-icon></a>
-            <a id="icon" href="https://www.twitter.com"><v-icon large dark>mdi-twitter</v-icon></a>
-          </v-row>
-        </div> -->
         <router-view></router-view>
       </div>
       <hr>
