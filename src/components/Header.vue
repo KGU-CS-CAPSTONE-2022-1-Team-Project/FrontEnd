@@ -26,14 +26,14 @@
         </v-tab>
 
           <!--로그인 상태-->
-          <v-tab v-if= true>
+          <v-tab v-if="isLogin">
             <router-link class="routerlink" to="/mypage">MyPage</router-link>
           </v-tab>
-          <v-tab v-if= true>
+          <v-tab v-if="isLogin">
             <button id="bt" v-on:click="logout">LOGOUT</button>
           </v-tab>
           <!--로그 아웃 상태-->
-          <v-tab v-if= true>
+          <v-tab v-else>
             <button id="bt" v-on:click="login">LOGIN</button>
           </v-tab>
       </v-tabs>
@@ -96,7 +96,10 @@
 </template>
 
 <script>
-import GoHome from '../components/GoHome.vue'
+import Loginjs from '../js/login.js';
+import {mapState, mapActions} from "vuex";
+import VueRouter from 'vue-router';
+
   export default {
     name: 'App',
     data: {
@@ -104,22 +107,53 @@ import GoHome from '../components/GoHome.vue'
         logType:true
       }
     },
+    computed: {
+      ...mapState(["isLogin"])
+    },
     components : {  
-      GoHome
     },
     methods: {
-    login: function() {
-    if (typeof window.klaytn !== 'undefined') {
-      console.log("no");
-    }
-      //const provider = window['klaytn']
-      console.log("yes");
-      console.log(window.klaytn);
-      const acc = window.klaytn.enable();
-      console.log("acc", acc);
+      ...mapActions(["loginEx"]),
+      login: function() {
+        let saveData = {
+          walletAddress : "",
+          isMember : false
+        };
+
+        const router = new VueRouter();
+        
+        
+        //Kaikas 지갑 설치 되어있음
+        if (window.klaytn !== 'undefined') {
+          if(window.klaytn.isKaikas){
+            if(window.klaytn.enable() !== ""){
+              saveData.walletAddress = window.klaytn.selectedAddress;
+              saveData.isMember = Loginjs.isMember(saveData.walletAddress);
+              //console.log(saveData);
+            }
+            //이미 회원 가입 했다면
+            if(saveData.isMember){
+              this.$store.dispatch('loginEx', saveData);
+              this.$router.push({
+                name: "home"
+              })
+            }
+            //아니라면 회원가입으로 진행
+            else{
+              this.$router.push({
+                name: "join"
+              })
+            }
+          }
+        }
     },
     logout: function(){
-      console.log("no");
+      console.log(this.$store.state["isLogin"]);
+      this.$store.dispatch('logoutEx');
+      this.$router.push({
+        name: "home"
+      })
+      console.log(this.$store.state["isLogin"]);
     }
   }
   }
