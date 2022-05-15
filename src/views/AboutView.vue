@@ -1,6 +1,51 @@
 <template>
 <v-app>
-    <div id="app">
+    <div id="app" flat>
+      <v-main class="grey lighten-3">
+      
+        <v-row>
+          
+          <v-col
+            cols="12"
+            sm="2"
+          >
+            <v-sheet
+              rounded="lg"
+              min-height="268"
+            >
+            왼쪽
+              
+            </v-sheet>
+          </v-col>
+
+          <v-col
+            cols="12"
+            sm="12"
+          >
+            <v-sheet
+              min-height="70vh"
+              rounded="lg"
+            >
+              <!-- 중간부분 -->
+              
+              <router-view></router-view>
+            </v-sheet>
+          </v-col>
+          
+          <v-col
+            cols="12"
+            sm="2"
+          >
+            <v-sheet
+              rounded="lg"
+              min-height="268"
+            >
+            오른쪽
+                
+            </v-sheet>
+          </v-col>
+        </v-row>
+    </v-main>
           <v-col id="title">우리 사이트를 200% 이용하는 방법</v-col>
           <v-row align="center" justify="center" v-bind:style="{ height: deviceHeight * 0.6 + 'px',}">
             <v-col cols="12" sm="10" ref="div1">
