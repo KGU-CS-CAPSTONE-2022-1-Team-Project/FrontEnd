@@ -2,9 +2,12 @@
   <v-app>
     <SearchBar />
       <v-row id="vrow" >
+        
         <v-col id="CARD" align="center" justify="center" v-for="(post, index) in posts" :key="index">
         <v-card  id="cd" align="center" justify="center" style="height: flex; width: 18rem;">
-          <img id="IMG" v-bind:src="post.img" alt style="width:280px; height:280px; padding:15px" >
+          <router-link :to="{ name: 'DetailView', params: { id: post.title },}">
+            <img id="IMG" v-bind:src="post.img" alt style="width:280px; height:280px; padding:15px" >
+          </router-link>
           <div class="card-body">
             <v-card class="text-left" title id="Title"><pre><strong>{{ post.title }}</strong>       {{"스트리머: "+post.streamer}}</pre></v-card>
             <v-card-subtitle class="text-left"> {{"설명: "+post.description}}<br>
@@ -124,7 +127,7 @@ export default {
     overflow: hidden;
     margin:0;
 
-    background-color: #424242;
+    background-color: #cffcf8;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -132,8 +135,8 @@ export default {
   #Title{ /* 카드 타이틀*/
     padding-left: 15px;
     font-size: 18px;
-    background-color: rgb(20, 20, 20);
-    color:white;
+    background-color: rgb(255, 255, 255);
+    color:rgb(0, 0, 0);
   }
   #CARD{
     margin: 40px 30px 40px 30px;
@@ -143,7 +146,7 @@ export default {
     text-align: center;
   }
   #cd{  /* 카드 배경*/
-    background-color:rgb(30, 30, 30);
-    color:white;
+    background-color:rgb(253, 253, 253);
+    color:rgb(14, 13, 13);
   }
 </style>

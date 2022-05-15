@@ -1,91 +1,30 @@
 <template>
-   <v-app>
-    <div id="app">
-        <v-row align="center" justify="center" v-bind:style="{ height: deviceHeight * 0.6 + 'px',}">
-          <v-col cols="12" sm="10" ref="div1">
-            <v-carousel
-               hide-delimiters
-               height = '800'
-               cycle :interval='interval'
-               hide-delimiter-background
-               show-arrows-on-hover
-            >
-               <v-carousel-item
-                  v-for="(item,i) in items"
-                  :key="i"
-                  :src="item.src" contain max-height="800"
-               ></v-carousel-item>
-            </v-carousel>
-         </v-col>
-        </v-row>
-        <div class="doc" ref="div2">
-          <h1>우리 사이트의 장점은</h1>
-          <h2>어쩌구</h2>
-          <h3>저쩌구</h3>
-        </div>
-        <router-view></router-view>
-      </div>
-      <hr>
-        <Footer />
-  </v-app>
+  <div class="container-fluid">
+    <!-- Header -->
+    <div class="row mb-5">
+    <lefthead class="lefthead col-sm ps-4"/>
+    <righthead class="righthead col-sm d-none d-md-block "/>
+    </div>
+  </div>
 </template>
 <script>
-import Footer from '../components/Footer.vue'
-  export default {
-    
-    data () {
-      return {
-        interval: 3000,
-        items: [
-          {
-            src: require('../assets/darksoul1.jpg'),
-          },
-          {
-            src: 'https://mblogthumb-phinf.pstatic.net/MjAxNzA1MTVfMjc0/MDAxNDk0Nzc4NjU1MDM5.rbVrEz_Hl1JrUx_OQZuqK5KBX52LhVKO5QB9g2oCBaog._eNCDbLhCannWgxkL60YNwAZknFXX1G0sJFKnkttawIg.JPEG.sirosaro/261A4E3858AB35D523A9AF.jpg?type=w2',
-          },
-          {
-            src: require('../assets/darksoul2.jpg'),
-          },
-          {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
-          },
-        ],
-      }
-    },
-    methods: {
-    goto(refName) {
-      var element = this.$refs[refName];
-      var top = element.offsetTop;
-
-      window.scrollTo(0, top);
-    }
-    },
-  components : {
-    Footer,
-  }
-  
-  
-  }
+import righthead from '../layouts/righthead.vue'
+import lefthead from '../layouts/lefthead.vue'
+export default {
+  name: 'Home',
+  components:{
+    righthead,
+    lefthead,
+  }, 
+}
 </script>
 <style scoped>
-  .routerlink{
-    color:white;
-  }
-
-#app{
-    overflow: hidden;
-    margin:0;
-    background-image: url("../assets/bgg.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+.lefthead{
+  padding-top: 15%;
 }
-.doc {
-  text-align: center;
-  padding: 20px;
-  color:white;
+@media screen and (max-width: 850px) {
+ .lefthead{
+  padding-top: 15%;
 }
-  .router-link-active{
-      color: #eeeeee;
-  }
+}
 </style>

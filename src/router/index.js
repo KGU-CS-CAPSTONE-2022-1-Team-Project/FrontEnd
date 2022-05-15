@@ -27,6 +27,12 @@ const routes = [
     name: 'mypage',
     component: () => import(/* webpackChunkName: "Logoin" */'../views/MyPage.vue')
   },
+  {
+    path : '/DetailView/:id',
+    name : 'DetailView',
+    component: () => import(/* webpackChunkName: "about" */ '../views/DetailView.vue'),
+    props: true,
+  },
 ]
 
 const router = new VueRouter({
