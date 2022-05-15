@@ -130,7 +130,7 @@ import VueRouter from 'vue-router';
             window.klaytn.enable().then((result) =>{
 
               if(result === undefined)return;
-              saveData.walletAddress = window.klaytn.selectedAddress;
+              saveData.walletAddress = result[0];
               saveData.isMember = Loginjs.isMember(saveData.walletAddress);
               console.log('3');
                           //이미 회원 가입 했다면

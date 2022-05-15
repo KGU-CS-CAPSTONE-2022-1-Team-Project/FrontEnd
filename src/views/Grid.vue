@@ -3,16 +3,27 @@
     <SearchBar />
       <v-row id="vrow" >
         
-        <v-col id="CARD" align="center" justify="center" v-for="(post, index) in posts" :key="index">
-        <v-card  id="cd" align="center" justify="center" style="height: flex; width: 18rem;">
+        <v-col id="CARD" v-for="(post, index) in posts" :key="index">
+        <v-card style="height: 390px; width: 250px;">
+          <div id="cd" style="height: 260px; width: 250px;">
           <router-link :to="{ name: 'DetailView', params: { id: post.title },}">
-            <img id="IMG" v-bind:src="post.img" alt style="width:280px; height:280px; padding:15px" >
+            <img id="IMG" v-bind:src="post.img" alt style="width:200px; height:205px; padding:1px" >
           </router-link>
+          </div>
           <div class="card-body">
-            <v-card class="text-left" title id="Title"><pre><strong>{{ post.title }}</strong>       {{"스트리머: "+post.streamer}}</pre></v-card>
-            <v-card-subtitle class="text-left"> {{"설명: "+post.description}}<br>
-            <pre>{{"제작자: "+post.maker}}              <v-btn color="red" id="click" icon><v-icon>mdi-heart</v-icon></v-btn> {{ count }}</pre>
-            </v-card-subtitle>
+            <div class="text-left">
+              <v-row>
+                <v-col sm="9">
+                  <div class="title_text" >{{ post.title }}</div>
+                  <div class="title_maker">{{"Created by "+post.maker}} </div>
+                </v-col>
+                <v-col sm="3">
+                  <div class="text-center">{{post.streamer}}</div>
+                </v-col>
+              </v-row>
+              <hr>
+            <div><v-btn color="red" id="heart" icon><v-icon dark>mdi-heart</v-icon></v-btn> {{ count }}</div>
+            </div>
           </div>
         </v-card>
         </v-col>  
@@ -110,29 +121,6 @@ export default {
                   this.count++;
                   console.log(this.count+"결과가 없어요.");
                 }
-                /*
-                if ((nftData[i].title).includes(this.keyword)){
-                  this.posts.push(nftData[i])
-                  this.pushcount++;
-                  this.count++;
-                  console.log(this.count+"title 가능")
-                }
-                else if ((nftData[i].streamer).includes(this.keyword)){
-                  this.posts.push(nftData[i])
-                  this.pushcount++;
-                  this.count++;
-                  console.log(this.count+"streamer 가능")
-                }
-                else if ((nftData[i].maker).includes(this.keyword)){
-                  this.posts.push(nftData[i])
-                  this.pushcount++;
-                  this.count++;
-                  console.log(this.count+"maker 가능")
-                }
-                else{
-                  this.count++;
-                  console.log(this.count+"결과가 없어요.");
-                }*/
             }
             else{
               this.posts.push(nftData[i])
@@ -150,7 +138,7 @@ export default {
     overflow: hidden;
     margin:0;
 
-    background-color: #424242;
+    background-color: #ffffff;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -158,8 +146,8 @@ export default {
   #Title{ /* 카드 타이틀*/
     padding-left: 15px;
     font-size: 18px;
-    background-color: rgb(20, 20, 20);
-    color:white;
+    background-color: rgb(255, 255, 255);
+    color:rgb(0, 0, 0);
   }
   #CARD{
     margin: 40px 30px 40px 30px;
@@ -169,7 +157,39 @@ export default {
     text-align: center;
   }
   #cd{  /* 카드 배경*/
-    background-color:rgb(30, 30, 30);
-    color:white;
+    background-color:rgb(220, 240, 220);
+    color:rgb(14, 13, 13);
+    text-align: center;
+    padding-top: 25px;
   }
+  .subtitle{
+    text-align: left;
+    background-color:#ffffff
+  }
+  .title_text{
+    text-align: left;
+    padding-left:20px;
+    padding-top: 15px;
+    padding-bottom:2px;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .title_maker{
+    text-align: left;
+    color:rgb(150, 150, 150);
+    padding-left:20px;
+    padding-bottom: 20px;
+    font-size:11px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  #heart{
+    size: 10px;
+  }
+  hr {
+  height:1px;
+  width:90%;
+  margin-left:5%;
+  background-color: #e2e2e2;
+  border: none;
+}
 </style>

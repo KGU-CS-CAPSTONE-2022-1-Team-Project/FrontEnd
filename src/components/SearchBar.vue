@@ -86,9 +86,6 @@ import EventBus from '../js/EventBus'
   #vr{
     background-color: rgb(2, 2, 2);
   }
-  #cl{
-    background-color:red
-  }
   #bt{
     background-color: #404040;
     color:white;
