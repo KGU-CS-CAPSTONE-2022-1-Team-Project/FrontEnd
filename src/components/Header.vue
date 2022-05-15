@@ -18,23 +18,23 @@
         class="ml-n9"
         color="white"
       >
-        <v-tab>
-          <router-link class="routerlink" to="/home">Home</router-link>
+        <v-tab to="/home">
+          <span class="routerlink">Home</span>
         </v-tab>
-        <v-tab>
-          <router-link class="routerlink" to="/grid">Grid</router-link>
+        <v-tab to="/grid">
+          <span class="routerlink">Grid</span>
         </v-tab>
 
           <!--로그인 상태-->
-          <v-tab v-if="isLogin">
-            <router-link class="routerlink" to="/mypage">MyPage</router-link>
+          <v-tab v-if="isLogin" to="/mypage">
+            <span class="routerlink">MyPage</span>
           </v-tab>
-          <v-tab v-if="isLogin">
-            <button id="bt" v-on:click="logout">LOGOUT</button>
+          <v-tab v-if="isLogin" v-on:click="logout()">
+            <button id="bt">LOGOUT</button>
           </v-tab>
           <!--로그 아웃 상태-->
-          <v-tab v-else>
-            <button id="bt" v-on:click="login">LOGIN</button>
+          <v-tab v-else v-on:click="login()">
+            <button id="bt">LOGIN</button>
           </v-tab>
       </v-tabs>
 
@@ -120,19 +120,22 @@ import VueRouter from 'vue-router';
           isMember : false
         };
 
-        const router = new VueRouter();
+        const router = new VueRouter({mode: 'history'})
         
         
         //Kaikas 지갑 설치 되어있음
+        
         if (window.klaytn !== 'undefined') {
           if(window.klaytn.isKaikas){
-            if(window.klaytn.enable() !== ""){
+            window.klaytn.enable().then((result) =>{
+
+              if(result === undefined)return;
               saveData.walletAddress = window.klaytn.selectedAddress;
               saveData.isMember = Loginjs.isMember(saveData.walletAddress);
-              //console.log(saveData);
-            }
-            //이미 회원 가입 했다면
+              console.log('3');
+                          //이미 회원 가입 했다면
             if(saveData.isMember){
+              console.log('2');
               this.$store.dispatch('loginEx', saveData);
               this.$router.push({
                 name: "home"
@@ -140,11 +143,15 @@ import VueRouter from 'vue-router';
             }
             //아니라면 회원가입으로 진행
             else{
+              console.log('1');
               this.$router.push({
                 name: "join"
               })
             }
+            })
           }
+        }else{
+          console.log('1');
         }
     },
     logout: function(){

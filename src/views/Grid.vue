@@ -2,9 +2,12 @@
   <v-app>
     <SearchBar />
       <v-row id="vrow" >
+        
         <v-col id="CARD" align="center" justify="center" v-for="(post, index) in posts" :key="index">
         <v-card  id="cd" align="center" justify="center" style="height: flex; width: 18rem;">
-          <img id="IMG" v-bind:src="post.img" alt style="width:280px; height:280px; padding:15px" >
+          <router-link :to="{ name: 'DetailView', params: { id: post.title },}">
+            <img id="IMG" v-bind:src="post.img" alt style="width:280px; height:280px; padding:15px" >
+          </router-link>
           <div class="card-body">
             <v-card class="text-left" title id="Title"><pre><strong>{{ post.title }}</strong>       {{"스트리머: "+post.streamer}}</pre></v-card>
             <v-card-subtitle class="text-left"> {{"설명: "+post.description}}<br>

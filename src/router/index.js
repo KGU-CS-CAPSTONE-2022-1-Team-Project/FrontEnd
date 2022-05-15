@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Grid from '../views/Grid.vue'
 import MyPage from '../views/MyPage.vue'
+import DetailView from '../views/DetailView.vue'
 
 Vue.use(VueRouter)
 
@@ -29,6 +30,12 @@ const routes = [
     path: '/mypage',
     name: 'mypage',
     component: MyPage
+  },
+  {
+    path : '/DetailView/:id',
+    name : 'DetailView',
+    component: () => import(/* webpackChunkName: "about" */ '../views/DetailView.vue'),
+    props: true,
   },
 ]
 
