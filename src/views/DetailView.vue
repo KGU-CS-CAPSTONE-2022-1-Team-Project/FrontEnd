@@ -1,40 +1,69 @@
 <template>
-      <v-app>
-    <div class="nft-info" style="width: 840px;">
-      <div class="img-box">
-        <v-card id="cd">
-          <img id="IMG" v-bind:src="sdata.img">
-        </v-card>
-      </div>
-      <div class="title-box">
-        <v-card id="title">
-          {{sdata.title}}
-        </v-card>
-      </div>
-      <div class="des-box">
-        <v-card id="des">
-          {{sdata.description}}
-        </v-card>
-      </div>
-
-    </div>
-    </v-app>
-</template>    
-
-      
-<!--
-{{ $route.params.data }}
-{{ data }}</h2>
-  <v-card  id="cd" align="center" justify="center" style="height: flex; width: 18rem;">
-    <img id="IMG" v-bind:src="post.img" alt style="width:280px; height:280px; padding:15px" >
-    <div class="card-body">
-    <v-card class="text-left" title id="Title"><pre><strong>{{ post.title }}</strong>       {{"스트리머: "+post.streamer}}</pre></v-card>
-    <v-card-subtitle class="text-left"> {{"설명: "+post.description}}<br>
-    <pre>{{"제작자: "+post.maker}}              <v-btn color="red" id="click" icon><v-icon>mdi-heart</v-icon></v-btn> {{ count }}</pre>
-    </v-card-subtitle>
-    </div>
-  </v-card>
-!-->
+  <v-app>
+    <v-row>
+      <v-col sm="2">left</v-col>
+      <v-col sm="8" id="detail-box" justify="center" align="center">
+        <v-col id="img-box">
+          <v-card id="IMG-BG" color="rgb(177, 204, 255)" dark tile flat>
+            <img id="IMG" v-bind:src="sdata.img" />
+          </v-card>
+        </v-col>
+        <v-col id="title-box">
+          <table style="margin-top: 48px;">
+            <tbody>
+              <tr>
+                <v-card-text class="ntitle" style="width:48rem">{{ sdata.title }}</v-card-text>
+              </tr>
+              <tr>
+                <td>
+                <v-card-text>
+                  <table style="display: table-cell; width: 24rem;">
+                    <tbody>
+                      <tr style="font-size:20px">
+                        Creator
+                      </tr>
+                      <tr class="producer">
+                        {{ sdata.maker }}
+                      </tr>
+                    </tbody>
+                  </table>
+                  <table style="display: table-cell; width: 24rem;">
+                    <tbody>
+                      <tr style="font-size:20px">
+                        Streamer
+                      </tr>
+                      <tr class="producer">
+                        {{ sdata.maker }}
+                      </tr>
+                    </tbody>
+                  </table>
+                </v-card-text>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </v-col>
+        <v-col id="des-box">
+          <v-card-text class="des-title">설명</v-card-text>
+          <v-card-text class="des">
+            {{ sdata.description }}
+          </v-card-text>
+        </v-col>
+        <v-col id="other-nft-box">
+          <v-row flat>
+            <v-card class="small-img-bg" v-for="(sdata, index) in userowner.slice(0,5)" :key="index">
+              <img class="small-img" v-bind:src="sdata.img" />
+            </v-card>
+            <v-card v-if="userowner.length>5" style="vertical-align: middle;" flat>
+              <img class="hwasal" style="width:48px; heigth:48px;" src="../assets/arrow.png"/> 
+            </v-card>
+          </v-row>
+        </v-col>
+      </v-col>
+      <v-col sm="2">right</v-col>
+    </v-row>
+  </v-app>
+</template>
 
 <script>
 import nftData from '../js/nftData';
@@ -72,27 +101,65 @@ export default {
 </script>
 
 <style scoped>
-  #Title{ /* 카드 타이틀*/
-    padding-left: 15px;
-    font-size: 18px;
-    background-color: rgb(20, 20, 20);
-    color:white;
-  }
-  #CARD{
-    margin: 40px 30px 40px 30px;
-  }
   #IMG{
     border-radius: 4px;
     width: 640px;
     height: 640px;
   }
-  #cd{  /* 카드 배경*/
-    background-color:rgb(30, 30, 30);
-    color:white;
+  #IMG-BG{  /* 카드 배경*/
+    background-color:rgb(255, 255, 255);
+    color:rgb(255, 255, 255);
     width: 800px;
     height: 800px;
     display: table-cell;
     vertical-align: middle;
     text-align: center;
+  }
+  .hwasal{ /* 화살표 */
+    margin-top:150%;
+  }
+  .small-img-bg{
+    background-color:rgb(255, 255, 255);
+    color:rgb(255, 255, 255);
+    width: 128px;
+    height: 128px;
+    margin:3%;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+  }
+  .small-img{
+    margin:10%;
+    border-radius: 4px;
+    width: 108px;
+    height: 108px;
+  }
+  .ntitle{
+    font-size: 4.5rem;
+    color: #2d3741;
+    font-weight: 700;
+    line-height: 64px;
+    width: 520px;
+    word-break: break-all;
+  }
+  .producer{
+    color: #2d3741;
+    font-weight: 1000;
+    font-size: 2rem;
+    line-height: 64px;
+    width: 520px;
+    word-break: break-all;
+  }
+  .des-title{
+    font-size:1.7rem;
+    font-weight: 600;
+    text-align:left;
+    width:48rem;
+  }
+  .des{
+    font-size:1.2rem;
+    font-weight: 600;
+    text-align:left;
+    width:48rem;
   }
 </style>
