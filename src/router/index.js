@@ -28,13 +28,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "Logoin" */'../views/MyPage.vue')
   },
   {
-    path : '/DetailView/:id',
-    name : 'DetailView',
-    component: () => import(/* webpackChunkName: "about" */ '../views/DetailView.vue'),
-    props: true,
-  },
-  {
-    path : '/DetailView/:id',
+    path : '/DetailView/:contractAddress/:tokenId',
     name : 'DetailView',
     component: () => import(/* webpackChunkName: "about" */ '../views/DetailView.vue'),
     props: true,

@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
+import VueClipboard from 'vue-clipboard2'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faHatWizard } from '@fortawesome/free-solid-svg-icons'
@@ -14,6 +15,9 @@ library.add(faHatWizard)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false
+
+VueClipboard.config.autoSetContainer = true
+Vue.use(VueClipboard)
 
 new Vue({
   router,

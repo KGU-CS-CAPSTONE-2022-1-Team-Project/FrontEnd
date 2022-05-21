@@ -1,6 +1,7 @@
-node_modules/
+/node_modules/
 .vscode/
 /contracts/
-migrations/
-test/
-truffle-config.js
+/migrations/
+/test/
+/truffle-config.js
+/.idea
