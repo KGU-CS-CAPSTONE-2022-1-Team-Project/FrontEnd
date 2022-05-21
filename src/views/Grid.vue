@@ -76,7 +76,6 @@
     </v-container>
 
     <mugen-scroll :handler="fetchData" :should-handle="!loading">
-      loading...
     </mugen-scroll>
   </v-app>
 </template>

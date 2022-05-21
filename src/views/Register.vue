@@ -4,24 +4,16 @@
 
     <main class="box">
       <h2>Register</h2>
-      <form>
+      <form @submit.prevent="submitForm">
         <div class="inputBox">
-          <label for="userName">Username</label>
-          <input type="text" name="userName" id="userName" placeholder="type your username" required/>
+          <label for="address">WalletAddress</label>
+          <input type="text" name="address" id="address" :placeholder="walletAddress" v-model="form.address">
         </div>
         <div class="inputBox">
-          <label for="userPassword">Password</label>
-          <input type="password" name="userPassword" id="userPassword" placeholder="type your password"
-                 required/>
+          <label for="nickname">Username</label>
+          <input type="text" name="nickname" id="nickname" placeholder="type your username" v-model="form.nickname" required/>
         </div>
-        <div class="inputBox">
-          <label for="userConfirmPassword">Confirm Password</label>
-          <input type="password" name="userPassword" id="userConfirmPassword"
-                 placeholder="confirm your password"
-                 required/>
-        </div>
-        <button type="submit" name="" style="float: left">Submit</button>
-        <router-link class="button" style="float: left;" to="/login">Login</router-link>
+        <button type="submit" depressed>등록</button>
       </form>
     </main>
     <footer>
@@ -30,14 +22,24 @@
 </template>
 
 <script>
+import api from "../js/api.js";
 import particlesConfig from "../assets/particles.json";
 
 export default {
   name: "Register",
   data: function () {
     return {
-      particlesConfig
-    };
+      particlesConfig,
+      form: {
+        address: '',
+        nickname: ''
+      }
+    }
+  },
+  methods: {
+    submitForm() {
+     api.signUser(this.form.address, this.form.nickname);
+    }
   }
 }
 </script>

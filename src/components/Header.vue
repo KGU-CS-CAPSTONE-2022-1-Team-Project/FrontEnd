@@ -11,8 +11,6 @@
         size="55"
         rounded
       ><v-img src="../assets/logo_origin.png"></v-img></v-avatar>
-      <!-- v-tabs 중앙은 centerd / 오른쪽은 right
-      <GoHome v-if="$route.name == 'home'">asd</GoHome>-->
       <v-tabs
         right
         class="ml-n9"
@@ -37,33 +35,11 @@
             <button id="bt">LOGIN</button>
           </v-tab>
       </v-tabs>
-
-      <!--
-      <v-avatar 
-        class="hidden-sm-and-down"
-        color="blue darken-1 shrink"
-        size="50"
-        rounded
-      ><button v-on:click="login">LOGIN</button></v-avatar>-->
     </v-app-bar>
 
     <v-main class="grey lighten-3">
       
         <v-row>
-          <!--
-          <v-col
-            cols="12"
-            sm="2"
-          >
-            <v-sheet
-              rounded="lg"
-              min-height="268"
-            >
-            왼쪽
-              
-            </v-sheet>
-          </v-col> -->
-
           <v-col
             cols="12"
             sm="12"
@@ -72,24 +48,10 @@
               min-height="70vh"
               rounded="lg"
             >
-              <!-- 중간부분 -->
               
               <router-view></router-view>
             </v-sheet>
           </v-col>
-          <!--
-          <v-col
-            cols="12"
-            sm="2"
-          >
-            <v-sheet
-              rounded="lg"
-              min-height="268"
-            >
-            오른쪽
-                
-            </v-sheet>
-          </v-col>-->
         </v-row>
     </v-main>
   </v-app>
@@ -128,32 +90,20 @@ import VueRouter from 'vue-router';
         if (window.klaytn !== 'undefined') {
           if(window.klaytn.isKaikas){
             window.klaytn.enable().then((result) =>{
-
+              console.log(result);
               if(result === undefined)return;
-              
               saveData.walletAddress = result[0];
-              
               saveData.isMember = Loginjs.isMember(saveData.walletAddress);
               console.log('3');
-                          //이미 회원 가입 했다면
             if(saveData.isMember){
-              console.log('2');
+
               this.$store.dispatch('loginEx', saveData);
               this.$router.push({
                 name: "home"
               })
             }
-            //아니라면 회원가입으로 진행
-            else{
-              console.log('1');
-              this.$router.push({
-                name: "join"
-              })
-            }
             })
           }
-        }else{
-          console.log('1');
         }
     },
     logout: function(){

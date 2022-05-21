@@ -33,6 +33,16 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/DetailView.vue'),
     props: true,
   },
+  {
+    path: '/register',
+    name: 'register',
+    component: () => import(/* webpackChunkName: "Logoin" */'../views/Register.vue')
+  },
+  {
+    path: '/upload',
+    name: 'upload',
+    component: () => import(/* webpackChunkName: "Logoin" */'../views/UploadNFT.vue')
+  }
 ]
 
 const router = new VueRouter({

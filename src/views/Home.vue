@@ -5,6 +5,7 @@
     <lefthead class="lefthead col-sm ps-4"/>
     <righthead class="righthead col-sm d-none d-md-block "/>
     </div>
+    <Section/>
     <Footer />
   </div>
 </template>
@@ -12,11 +13,13 @@
 import righthead from '../layouts/righthead.vue'
 import lefthead from '../layouts/lefthead.vue'
 import Footer from '../components/Footer.vue'
+import Section from '../components/Section.vue'
 export default {
   name: 'Home',
   components:{
     righthead,
     lefthead,
+    Section,
     Footer
   }, 
 }

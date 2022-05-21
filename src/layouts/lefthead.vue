@@ -1,13 +1,17 @@
 <template>
     <div>
-        <p class="text-center text-capitalize fs-1 fw-bold">Art Block</p>
-        <p class="text-secondary">This text is styled with some of the text formatting properties. The heading uses the text-align, text-transform, and color properties.
-        The paragraph is indented, aligned, and the space between characters is specified. The underline is removed from this colored.</p>
-        <!-- <a href="https://github.com/mohammedmoutawakkil/MKTemplate" class="btn text-uppercase text-light fw-bold px-sm-4 py-sm-3 Stars">Github Star</a>-->
-        <br><br>
+      <h1 class="text-left text-capitalize fs-1 fw-bold">NFT Creator </h1>
+      <h1 class="text-left text-capitalize fs-1 fw-bold">to Make Your NFT</h1>
+      <h1 class="text-left text-capitalize fs-1 fw-bold">Art Collection</h1>
+      <br><br>
+      <h2 class="text-lefter text-capitalize fs-1 fw-bold">Art Block relays NFT generation between original creators and secondary creators through Smart Contract.</h2>
+      <br><br>
+      <div>
+        <img src="../assets/banner.png">
+      </div>
         <div class="btclass">
-          <a id="bt" ><router-link class="routerlink" to="/grid">Get Started</router-link></a>
-          <a id="bt" ><router-link class="routerlink" to="/about">HELP</router-link></a>
+          <router-link id="bt" class="routerlink"  to="/grid">Get Started</router-link>
+          <router-link id="bt" class="routerlink"  to="/about">Help</router-link>
         </div>
     </div>
 </template>
@@ -25,7 +29,8 @@ div {
 }
 
 p:first-child {
-  color: #667EEA;
+  font-size: x-large;
+  color: #000000;
 }
 
 p {
