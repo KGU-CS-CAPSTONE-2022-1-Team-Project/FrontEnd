@@ -58,8 +58,9 @@
 </template>
 
 <script>
-import Loginjs from '../js/login.js';
+
 import {mapState, mapActions} from "vuex";
+import api from '../js/api.js';
 import VueRouter from 'vue-router';
 
   export default {
@@ -90,29 +91,31 @@ import VueRouter from 'vue-router';
         if (window.klaytn !== 'undefined') {
           if(window.klaytn.isKaikas){
             window.klaytn.enable().then((result) =>{
-              console.log(result);
               if(result === undefined)return;
+              
               saveData.walletAddress = result[0];
-              saveData.isMember = Loginjs.isMember(saveData.walletAddress);
-              console.log('3');
-            if(saveData.isMember){
+              var getNick = api.getNickname(saveData.walletAddress).then(result => {
+                if(result.data['nickname'] !== "")saveData.isMember = true;
+                else saveData.isMember = false;
+                console.log(saveData);
+                if(saveData.isMember){
+                
+                this.$store.dispatch('loginEx', saveData);
+                if(this.$route.path!=='/home') this.$router.push('/home')
+                
+                }else{
+                  alert("회원가입이 필요합니다.");
+                  this.$router.push('/register');
+                }
 
-              this.$store.dispatch('loginEx', saveData);
-              this.$router.push({
-                name: "home"
-              })
-            }
+              });
             })
           }
         }
     },
     logout: function(){
-      console.log(this.$store.state["isLogin"]);
       this.$store.dispatch('logoutEx');
-      this.$router.push({
-        name: "home"
-      })
-      console.log(this.$store.state["isLogin"]);
+      if(this.$route.path!=='/home') this.$router.push('/home')
     }
   }
   }

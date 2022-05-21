@@ -26,7 +26,7 @@ export default {
 </script>
 <style scoped>
 .lefthead{
-  padding-top: 15%;
+  padding-top: 3%;
 }
 @media screen and (max-width: 850px) {
  .lefthead{

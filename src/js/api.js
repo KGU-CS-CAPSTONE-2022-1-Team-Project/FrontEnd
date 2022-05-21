@@ -11,11 +11,7 @@ const api ={
             headers:{
                 'Content-Type': 'multipart/form-data'
             },
-            data:{
-                image : formData.image,
-                name : formData.name,
-                description : formData.description
-            }
+            data: formData
         })
         .then(function (response) {
             console.log(response);
@@ -26,19 +22,11 @@ const api ={
             return error;
         });
     },
-    getNickname: function(address){
-        axios({
-            method: 'get',
-            url: '/common/nickname/' + address
-        })
-        .then(function (response) {
-            console.log(response);
-            return response;
-        })
-        .catch(function (error) {
-            console.log(error);
-            return error;
-        });
+    getNickname(address) {
+        var url = '/common/nickname/' + address;
+        const response = axios.get(url);
+        console.log(response.data);
+        return response;
     },
     signUser: function(address, nickname){
         axios({
@@ -50,6 +38,8 @@ const api ={
             }
         })
         .then(function (response) {
+            alert("회원가입이 완료되었습니다.");
+            document.location.href="/home";
             console.log(response);
             return response;
         })
