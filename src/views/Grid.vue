@@ -159,6 +159,7 @@ export default {
                   })
                 })
             ).then((NFTs) => {
+                  this.NFTData = NFTs;
                   this.allPosts = NFTs;
                   this.fetchData();
                   NFTs.map((NFT, index) => {
@@ -182,6 +183,7 @@ export default {
       console.log("키워드:" + this.keyword);
       console.log("플래그:" + this.flag);
       let NFTs = this.NFTData;
+      console.log(NFTs)
       this.allPosts = [];
       this.posts = [];
       this.loadedPosts = 0;
@@ -192,18 +194,20 @@ export default {
         })
       } else if (this.flag === 2) {  // 스트리머 검색
         this.allPosts = NFTs.filter((NFT) => {
-          return NFT.contractOwner.includes(this.keyword)
+          return NFT.contractOwner.includes(this.keyword) || this.nicknames[NFT.contractOwner].includes(this.keyword);
         })
       } else if (this.flag === 3) {  // creator 검색
         this.allPosts = NFTs.filter((NFT) => {
-          return NFT.creator.includes(this.keyword)
+          return NFT.creator.includes(this.keyword) || this.nicknames[NFT.creator].includes(this.keyword);
         })
       } else if (this.flag === 0) {  // 통합 검색
         this.allPosts = NFTs.filter(NFT => {
           console.log(NFT)
           return NFT.name.includes(this.keyword) ||
               NFT.contractOwner.includes(this.keyword) ||
-              NFT.creator.includes(this.keyword)
+              this.nicknames[NFT.contractOwner].includes(this.keyword) ||
+              NFT.creator.includes(this.keyword) ||
+              this.nicknames[NFT.creator].includes(this.keyword);
         })
       }
       this.fetchData();
