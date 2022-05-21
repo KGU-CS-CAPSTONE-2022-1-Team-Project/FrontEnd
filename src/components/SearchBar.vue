@@ -18,16 +18,6 @@
         </v-col>
         <v-col cols="12" md="3" />
     </v-row>
-<!--위는 검색창 아래는 검색 후 결과-->
-    <v-row v-if="searchfinish===true" :style="{marginTop:'0px'}">
-      <v-col cols="12" md="5"/>
-      <v-col cols="12" md="2">
-        <h2>hello</h2>
-          <div style="font-size: x-large">검색결과 : {{searchcnt}} 개</div>
-      </v-col>
-      <v-col cols="12" md="5"/>
-    </v-row>
-      <!-- 여기서부터는 게시판 페이지와 거의 일치, 검색완료시에만 표가 나타나게 했고, 게시판 번호 표시 -->
   </v-row>
 </template>
 <script>
@@ -85,9 +75,6 @@ import EventBus from '../js/EventBus'
 <style scoped>
   #vr{
     background-color: rgb(2, 2, 2);
-  }
-  #cl{
-    background-color:red
   }
   #bt{
     background-color: #404040;

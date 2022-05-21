@@ -128,16 +128,12 @@ import VueRouter from 'vue-router';
         if (window.klaytn !== 'undefined') {
           if(window.klaytn.isKaikas){
             window.klaytn.enable().then((result) =>{
-
               if(result === undefined)return;
               
               saveData.walletAddress = result[0];
-              
               saveData.isMember = Loginjs.isMember(saveData.walletAddress);
-              console.log('3');
                           //이미 회원 가입 했다면
             if(saveData.isMember){
-              console.log('2');
               this.$store.dispatch('loginEx', saveData);
               this.$router.push({
                 name: "home"

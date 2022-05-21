@@ -1,9 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import Grid from '../views/Grid.vue'
-import MyPage from '../views/MyPage.vue'
-import DetailView from '../views/DetailView.vue'
 
 Vue.use(VueRouter)
 
@@ -11,7 +7,7 @@ const routes = [
   {
     path: '/home',
     name: 'home',
-    component: Home
+    component: () => import(/* webpackChunkName: "Home" */'../views/Home.vue')
   },
   {
     path: '/about',
@@ -19,17 +15,17 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    component: () => import(/* webpackChunkName: "Home" */ '../views/AboutView.vue')
   },
   {
     path: '/grid',
     name: 'grid',
-    component: Grid
+    component: () => import(/* webpackChunkName: "Home" */'../views/Grid.vue')
   },
   {
     path: '/mypage',
     name: 'mypage',
-    component: MyPage
+    component: () => import(/* webpackChunkName: "Logoin" */'../views/MyPage.vue')
   },
   {
     path : '/DetailView/:id',
@@ -37,6 +33,22 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/DetailView.vue'),
     props: true,
   },
+  {
+    path : '/DetailView/:id',
+    name : 'DetailView',
+    component: () => import(/* webpackChunkName: "about" */ '../views/DetailView.vue'),
+    props: true,
+  },
+  {
+    path: '/test',
+    name: 'test',
+    component: () => import(/* webpackChunkName: "Logoin" */'../views/test.vue')
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: () => import(/* webpackChunkName: "Logoin" */'../views/Register.vue')
+  }
 ]
 
 const router = new VueRouter({
