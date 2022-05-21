@@ -240,12 +240,5 @@ const nftData = [
     contract:"0x1c8a9c76ed37dd4f3d6c169c275d1e82ea9ccda7"
   }
 ];
-const db ={
-  searchDataById: function(id){
-    nftData.forEach(data=>{
-      if(data.title === id)return data;
-    })
-  }
-}
 
 export default nftData;
