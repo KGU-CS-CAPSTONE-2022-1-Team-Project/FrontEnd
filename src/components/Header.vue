@@ -27,6 +27,9 @@
           <v-tab v-if="isLogin" to="/mypage">
             <span class="routerlink">MyPage</span>
           </v-tab>
+          <v-tab v-if="isLogin" to="/upload">
+            <span class="routerlink">UPLOAD</span>
+          </v-tab>
           <v-tab v-if="isLogin" v-on:click="logout()">
             <button id="bt">LOGOUT</button>
           </v-tab>

@@ -10,7 +10,7 @@ const Connection = {
         return new Promise(function (resolve, reject) {
             self.contract = new window.caver.klay.Contract(
                 connection.abi,
-                "0x3b4b3f22f2B2bA0c13F66C7a8A01014dC7CECE1F"
+                "0x3ca109Dfb2d0e4d98c72F3E3A899a63c06A4Ae17"
             );
             resolve();
         });
@@ -208,6 +208,12 @@ const Connection = {
                 .then((NFTs) => resolve(NFTs))
                 .catch((err) => reject(err));
         });
+    },
+    getCelebrities: function () {
+        let self = this;
+        return new Promise(function (resolve, reject) {
+            self.contract.methods.getCelebrities().call().then(resolve).catch(reject);
+        })
     }
 };
 

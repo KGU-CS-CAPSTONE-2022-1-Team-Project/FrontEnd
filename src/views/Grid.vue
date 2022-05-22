@@ -83,7 +83,6 @@
 <script>
 import SearchBar from '../components/SearchBar.vue'
 import MugenScroll from 'vue-mugen-scroll'
-import nftData from '../js/nftData'
 import EventBus from '../js/EventBus'
 import Connection from '../js/Connection'
 import axios from 'axios'

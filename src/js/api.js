@@ -1,10 +1,13 @@
 import axios from 'axios'
+import Connection from './Connection';
+
+var dev = "https://capston-blockapp.greenflamingo.dev:10321/partner/nft/"
 
 const api ={
     getGoogle: function(){
 
     },
-    uploadNFT: function(formData){
+    uploadNFT: function(formData, address){
         axios({
             method: 'POST',
             url: '/partner/nft',
@@ -14,6 +17,9 @@ const api ={
             data: formData
         })
         .then(function (response) {
+            console.log(response.data.id);
+            console.log(address)
+            Connection.requestNFT(dev+response.data.id, address);
             console.log(response);
             return response;
         })

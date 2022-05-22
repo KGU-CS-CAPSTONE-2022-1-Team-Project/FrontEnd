@@ -161,7 +161,6 @@
 </template>
 
 <script>
-import nftData from '../js/nftData';
 import Connection from "../js/Connection";
 import axios from "axios";
 

@@ -7,31 +7,30 @@
       <form @submit.prevent="submitForm">
         <div class="inputBox">
           <label for="address">WalletAddress</label>
-          <input type="text" name="address" id="address" :placeholder="walletAddress" v-model="form.address">
+          <input readonly type="text" name="address" id="address" v-bind="walletAddress" v-model="form.address">
         </div>
         <div class="inputBox">
           <label for="nickname">Username</label>
           <input type="text" name="nickname" id="nickname" placeholder="type your username" v-model="form.nickname" required/>
         </div>
         <button type="submit" depressed>등록</button>
+        <v-btn elevation="2">유튜버 인증</v-btn>
       </form>
     </main>
-    <footer>
-    </footer>
   </div>
 </template>
 
 <script>
 import api from "../js/api.js";
 import particlesConfig from "../assets/particles.json";
-
 export default {
   name: "Register",
   data: function () {
     return {
+      walletAddress: 
       particlesConfig,
       form: {
-        address: '',
+        address: window.klaytn.selectedAddress,
         nickname: ''
       }
     }
