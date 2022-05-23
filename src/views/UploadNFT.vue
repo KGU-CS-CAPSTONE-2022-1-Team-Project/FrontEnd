@@ -67,8 +67,6 @@ export default {
       formData.append('image', this.image);
 
       api.uploadNFT(formData, this.originAuthor);
-      // alert("NFT등록이 완료되었습니다.");
-      // document.location.href="/mypage";
     },
   }
 }
