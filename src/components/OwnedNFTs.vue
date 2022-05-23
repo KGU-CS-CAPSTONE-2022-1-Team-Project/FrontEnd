@@ -82,6 +82,7 @@ import axios from "axios";
 import MugenScroll from 'vue-mugen-scroll'
 
 export default {
+  components: {MugenScroll},
   data() {
     return {
       posts: [],

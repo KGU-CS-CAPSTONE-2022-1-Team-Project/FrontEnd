@@ -11,10 +11,11 @@
         </div>
         <div class="inputBox">
           <label for="nickname">Username</label>
-          <input type="text" name="nickname" id="nickname" placeholder="type your username" v-model="form.nickname" required/>
+          <input type="text" name="nickname" id="nickname" placeholder="type your username" v-model="form.nickname"
+                 required/>
         </div>
         <button type="submit" depressed>등록</button>
-        <v-btn elevation="2">유튜버 인증</v-btn>
+        <v-btn elevation="2" @click="openGoogle">유튜버 인증</v-btn>
       </form>
     </main>
   </div>
@@ -23,11 +24,12 @@
 <script>
 import api from "../js/api.js";
 import particlesConfig from "../assets/particles.json";
+
 export default {
   name: "Register",
   data: function () {
     return {
-      walletAddress: 
+      walletAddress:
       particlesConfig,
       form: {
         address: window.klaytn.selectedAddress,
@@ -37,7 +39,14 @@ export default {
   },
   methods: {
     submitForm() {
-     api.signUser(this.form.address, this.form.nickname);
+      api.signUser(this.form.address, this.form.nickname);
+    },
+    openGoogle: function () {
+      let popup = window.open('https://capston-blockapp.greenflamingo.dev:10321/owner/google', "_target", "width = 500, height = 500, top = 50, left = 50, location = no");
+
+      popup.addEventListener('beforeunload', function () {
+        console.log("xxxx")
+      });
     }
   }
 }

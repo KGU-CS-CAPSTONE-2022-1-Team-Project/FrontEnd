@@ -10,7 +10,7 @@ const Connection = {
         return new Promise(function (resolve, reject) {
             self.contract = new window.caver.klay.Contract(
                 connection.abi,
-                "0x3ca109Dfb2d0e4d98c72F3E3A899a63c06A4Ae17"
+                "0x70833A8Db44Be18a80c9D5F698e952A5d93ED0ec"
             );
             resolve();
         });

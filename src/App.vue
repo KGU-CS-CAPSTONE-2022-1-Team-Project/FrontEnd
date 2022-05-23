@@ -1,6 +1,6 @@
 <template>
   <v-app id="inspire">
-        <Header /> 
+        <Header />
   </v-app>
 </template>
 <script>
@@ -24,7 +24,7 @@ export default {
   }
 
   /*
-  a{ 
+  a{
     text-decoration: none;
     font-weight: bolder;
     font-size:larger;

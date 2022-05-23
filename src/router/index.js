@@ -42,6 +42,11 @@ const routes = [
     path: '/upload',
     name: 'upload',
     component: () => import(/* webpackChunkName: "Logoin" */'../views/UploadNFT.vue')
+  },
+  {
+    path: '/redirect',
+    name: 'redirect',
+    component: () => import(/* webpackChunkName: "Logoin" */'../views/Redirect.vue')
   }
 ]
 
