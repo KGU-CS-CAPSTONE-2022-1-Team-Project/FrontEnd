@@ -107,7 +107,7 @@ export default {
             if (result === undefined) return;
 
             saveData.walletAddress = result[0];
-            var getNick = api.getNickname(saveData.walletAddress).then(result => {
+            api.getNickname(saveData.walletAddress).then(result => {
               saveData.isMember = result.data['nickname'] !== "";
 
               if (saveData.isMember) {
@@ -120,6 +120,9 @@ export default {
                 this.$router.push('/register');
               }
 
+            }).catch(() => {
+              alert("회원가입이 필요합니다.");
+              this.$router.push('/register');
             });
           })
         }
