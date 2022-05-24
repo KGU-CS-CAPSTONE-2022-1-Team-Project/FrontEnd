@@ -8,7 +8,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     plugins: [
         createPersistedState({
-            storage: window.localStorage,
+            storage: window.sessionStorage,
             paths: ['loginStore']
         })
     ],

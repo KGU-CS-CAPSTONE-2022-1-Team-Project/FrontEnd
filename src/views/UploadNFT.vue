@@ -2,33 +2,71 @@
   <div>
     <div class="row py-4">
       <div class="col-lg-6 mx-auto">
-        <!-- Upload image input-->
-        <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
-          <v-file-input label="File Input" v-model="image" @change="getFile($event)"></v-file-input>
-        </div>
+        <validation-observer
+            ref="observer"
+            v-slot="{ invalid }"
+        >
+          <form>
+            <!-- Upload image input-->
+            <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
+              <validation-provider
+                  v-slot="{ errors }"
+                  name="Image"
+                  rules="required"
+              >
+                <v-file-input label="File Input" v-model="image" @change="getFile($event)"
+                              :error-messages="errors"></v-file-input>
+              </validation-provider>
+            </div>
+            <!-- Uploaded image area-->
+            <p class="font-italic text-white text-center">이미지 미리보기</p>
+            <div class="image-area mt-4" v-if="url!== ''">
+              <v-img :src="url"></v-img>
+            </div>
+            <div style="margin-top: 2%" class="inputBox">
+              <validation-provider
+                  v-slot="{ errors }"
+                  name="Name"
+                  rules="required"
+              >
+                <v-text-field v-model="name"
+                              :error-messages="errors"
+                              label="Name"
+                ></v-text-field>
+              </validation-provider>
 
-        <!-- Uploaded image area-->
-        <p class="font-italic text-white text-center">이미지 미리보기</p>
-        <div class="image-area mt-4" v-if="url!== ''">
-          <v-img :src="url"></v-img>
-        </div>
-        <div style="margin-top: 2%" class="inputBox">
-          <label>Name</label>
-          <v-text-field v-model="name"></v-text-field>
-        </div>
-        <div class="inputBox">
-          <label>Description</label>
-          <v-text-field v-model="description"></v-text-field>
-        </div>
-        <label>Original Author</label>
-        <v-select
-            style="margin-top: 1%"
-            v-model="originAuthor"
-            :items="celebrities"
-            label="스트리머"
-            solo
-        ></v-select>
-        <v-btn color="primary" @click="submitForm($event)">등록</v-btn>
+            </div>
+            <div class="inputBox">
+              <validation-provider
+                  v-slot="{ errors }"
+                  name="Description"
+                  rules="required"
+              >
+                <v-text-field v-model="description"
+                              label="Description"
+                              :error-messages="errors"
+                ></v-text-field>
+              </validation-provider>
+            </div>
+            <validation-provider
+                v-slot="{ errors }"
+                name="Description"
+                rules="required"
+            >
+              <v-select
+                  style="margin-top: 1%"
+                  v-model="originAuthor"
+                  :items="celebrities"
+                  label="Original Author"
+                  solo
+                  :error-messages="errors"
+              ></v-select>
+            </validation-provider>
+            <v-btn color="primary" :disabled="invalid"
+                   @click="submitForm($event)">등록
+            </v-btn>
+          </form>
+        </validation-observer>
       </div>
     </div>
   </div>
@@ -37,20 +75,46 @@
 <script>
 import Connection from "../js/Connection"
 import api from "../js/api.js";
+import {required, digits, email, max, regex} from 'vee-validate/dist/rules'
+import {extend, ValidationObserver, ValidationProvider, setInteractionMode} from 'vee-validate'
+
+setInteractionMode('eager')
+
+extend('required', {
+  ...required,
+  message: '{_field_} can not be empty',
+})
 
 export default {
+  components: {
+    ValidationProvider,
+    ValidationObserver,
+  },
   data: () => ({
     url: '',
     name: '',
     description: '',
     image: '',
     celebrities: [],
-    originAuthor: ''
+    originAuthor: '',
+
   }),
   created() {
     Connection.init();
     Connection.getCelebrities().then(res => {
-      this.celebrities = res;
+      Promise.all(res.map(address => {
+        return new Promise((resolve, reject) => {
+          api.getNickname(address).then(response => {
+            resolve(`${response.data.nickname} (${address})`)
+          }).catch(() => {
+            resolve(`${address} `)
+          })
+        })
+      })).then(celebrities => {
+        this.celebrities = celebrities
+        console.log(celebrities)
+      });
+
       console.log(this.celebrities);
     });
   },
@@ -67,11 +131,15 @@ export default {
     submitForm(event) {
       event.preventDefault();
       let formData = new FormData();
+      console.log(this.image)
       formData.append('name', this.name);
       formData.append('description', this.description);
       formData.append('image', this.image);
 
-      api.uploadNFT(formData, this.originAuthor);
+      this.originAuthor = this.originAuthor.substring(this.originAuthor.length - 43, this.originAuthor.length - 1)
+      console.log(this.originAuthor)
+
+      // api.uploadNFT(formData, this.originAuthor);
     },
   }
 }

@@ -5,10 +5,7 @@
     <main class="box">
       <h2>Register</h2>
       <form @submit.prevent="submitForm">
-        <div class="inputBox">
-          <label for="address">WalletAddress</label>
-          <input readonly type="text" name="address" id="address" v-bind="walletAddress" v-model="form.address">
-        </div>
+
         <div class="inputBox">
           <label for="nickname">Username</label>
           <input type="text" name="nickname" id="nickname" placeholder="type your username" v-model="form.nickname"
@@ -39,14 +36,13 @@ export default {
   },
   methods: {
     submitForm() {
-      api.signUser(this.form.address, this.form.nickname);
+      window.caver.klay.sign("Hello ArtBlock", window.klaytn.selectedAddress).then(sig => {
+        console.log(sig)
+        api.signUser(sig, this.form.nickname);
+      }).catch(console.log)
     },
     openGoogle: function () {
       let popup = window.open('https://capston-blockapp.greenflamingo.dev:10321/owner/google', "_target", "width = 500, height = 500, top = 50, left = 50, location = no");
-
-      popup.addEventListener('beforeunload', function () {
-        console.log("xxxx")
-      });
     }
   }
 }

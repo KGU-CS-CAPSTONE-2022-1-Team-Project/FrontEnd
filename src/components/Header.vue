@@ -5,6 +5,7 @@
         color="black"
         flat
         height="70px"
+        v-if="!blank"
     >
       <v-avatar
           :color="$vuetify.breakpoint.smAndDown ? 'grey darken-1' : 'transparent'"
@@ -81,6 +82,12 @@ export default {
     ),
   },
   components: {},
+  created: function () {
+    this.blank = window.location.pathname.includes("redirect");
+    if (this.isLogin && !window.klaytn.isConnected()) {
+      this.logoutEx()
+    }
+  },
   methods: {
     ...mapActions('loginStore', ["loginEx"]),
     ...mapActions('loginStore', ["logoutEx"]),
