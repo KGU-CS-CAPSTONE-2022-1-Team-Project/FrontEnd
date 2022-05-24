@@ -191,7 +191,7 @@ export default {
       });
     },
     cancel: function (tokenURI) {
-      Connection.cancelRequest(tokenURI).then((result) => {
+      Connection.cancelNFT(tokenURI).then((result) => {
         this.poolHistory();
         this.dialog = {};
       });

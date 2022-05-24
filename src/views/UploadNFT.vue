@@ -69,6 +69,51 @@
         </validation-observer>
       </div>
     </div>
+    <v-dialog
+        v-model="dialog"
+        persistent
+        max-width="700"
+    >
+      <v-card>
+        <v-card-title class="text-h5 justify-center">
+          요청 성공
+        </v-card-title>
+        <v-card-text class="justify-center">
+          TX HASH : {{ txHash }}
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+              color="green darken-1"
+              text
+              @click="dialog = false"
+          >
+            닫기
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+    <v-dialog
+        v-model="failDialog"
+        persistent
+        max-width="300"
+    >
+      <v-card>
+        <v-card-title class="text-h5 justify-center">
+          요청 실패
+        </v-card-title>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+              color="red darken-1"
+              text
+              @click="failDialog = false"
+          >
+            닫기
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -97,7 +142,9 @@ export default {
     image: '',
     celebrities: [],
     originAuthor: '',
-
+    dialog: false,
+    txHash: '',
+    failDialog: false
   }),
   created() {
     Connection.init();
@@ -139,7 +186,14 @@ export default {
       this.originAuthor = this.originAuthor.substring(this.originAuthor.length - 43, this.originAuthor.length - 1)
       console.log(this.originAuthor)
 
-      // api.uploadNFT(formData, this.originAuthor);
+      api.uploadNFT(formData, this.originAuthor).then(response => {
+        Connection.requestNFT("https://capston-blockapp.greenflamingo.dev:10321" + "/partner/nft/" + response.data.id, this.originAuthor).then(receipt => {
+          this.txHash = receipt.transactionHash
+          this.dialog = true
+        }).catch(err => {
+          this.failDialog = true;
+        })
+      });
     },
   }
 }

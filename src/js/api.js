@@ -9,25 +9,18 @@ const api = {
 
     },
     uploadNFT: function (formData, address) {
-        axios({
-            method: 'POST',
-            url: server + '/partner/nft',
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            },
-            data: formData
-        })
-            .then(function (response) {
-                console.log(response.data.id);
-                console.log(address)
-                Connection.requestNFT(dev + response.data.id, address);
-                console.log(response);
-                return response;
+        return new Promise((resolve, reject) => {
+            axios({
+                method: 'POST',
+                url: server + '/partner/nft',
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
+                data: formData
             })
-            .catch(function (error) {
-                console.log(error);
-                return error;
-            });
+                .then(resolve)
+                .catch(reject);
+        })
     },
     getNickname(address) {
         return new Promise((resolve, reject) => {
@@ -45,7 +38,8 @@ const api = {
                 }
             });
         })
-    },
+    }
+    ,
     signUser: function (signature, nickname) {
         axios({
             method: 'POST',

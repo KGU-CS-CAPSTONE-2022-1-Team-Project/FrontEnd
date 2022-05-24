@@ -121,17 +121,17 @@ const Connection = {
      * @param tokenURI
      * @returns transaction receipt
      */
-    cancelRequest: function (tokenURI) {
+    cancelNFT: function (tokenURI) {
         let self = this;
         return new Promise(function (resolve, reject) {
             self.contract.methods
-                .cancelRequest(tokenURI)
+                .cancelNFT(tokenURI)
                 .estimateGas({
                     from: window.klaytn.selectedAddress,
                 })
                 .then((estimatedGas) => {
                     self.contract.methods
-                        .cancelRequest(tokenURI)
+                        .cancelNFT(tokenURI)
                         .send({
                             from: window.klaytn.selectedAddress,
                             gas: estimatedGas,
