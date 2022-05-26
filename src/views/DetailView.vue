@@ -139,10 +139,10 @@
                 </v-btn>
               </v-card>
               <v-card class="small-img-bg" v-for="(NFT, index) in NFTs.slice(slice, slice+3)" :key="index">
-                <router-link
-                    :to="{ name: 'DetailView', params: { contractAddress: $route.params.contractAddress, tokenId: NFT.tokenId }}">
+                <a
+                    :href="$router.resolve({ name: 'DetailView', params: { contractAddress: $route.params.contractAddress, tokenId: NFT.tokenId }}).href">
                   <img class="small-img" v-bind:src="NFT.image"/>
-                </router-link>
+                </a>
               </v-card>
               <v-card v-if=" NFTs.length - slice> 3" style="vertical-align: middle;" flat>
                 <v-btn height="48" dark @click="slice+=3">
@@ -177,6 +177,8 @@ export default {
   beforeCreate() {
     Connection.init().then(() => {
       this.getNFTByContractAddress().then(NFTs => {
+        console.log(NFTs)
+        NFTs = NFTs.filter(NFT => NFT!==undefined);
         NFTs.map((NFT, index) => {
           this.$set(this.nicknames, NFT.contractOwner, "");
           this.$set(this.nicknames, NFT.creator, "");
@@ -193,18 +195,6 @@ export default {
       })
     })
   },
-  beforeUpdate() {
-    this.getNFTByContractAddress().then(NFTs => {
-      console.log(NFTs)
-      let index;
-      this.now = NFTs.find((NFT, idx) => {
-        index = idx;
-        return NFT.tokenId === this.$route.params.tokenId;
-      });
-      NFTs.splice(index, 1);
-      this.NFTs = NFTs;
-    })
-  },
   methods: {
     getNFTByContractAddress: function () {
       return new Promise(resolve => {
@@ -213,7 +203,7 @@ export default {
             return new Promise(resolve => {
               axios.get(NFT.tokenURI).then(res => {
                 resolve(Object.assign(res.data, NFT));
-              })
+              }).catch(x => resolve(undefined))
             })
           })).then(resolve)
         })

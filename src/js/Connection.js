@@ -210,9 +210,9 @@ const Connection = {
     getNFTByContractAddress: function (contractAddress) {
         let self = this;
         return new Promise(function (resolve, reject) {
-            self.contract.methods
+            self.caverContract.methods
                 .getNFTByContractAddress(contractAddress)
-                .call({from: window.klaytn.selectedAddress})
+                .call()
                 .then((NFTs) => resolve(NFTs))
                 .catch((err) => reject(err));
         });
