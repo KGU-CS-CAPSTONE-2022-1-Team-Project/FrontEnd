@@ -1,17 +1,24 @@
 import connection from "../../build/contracts/Connection.json";
+import Caver from 'caver-js';
 
 const Connection = {
     contract: null,
+    caverContract: null,
     /**
      * initialize Connection wrapper object
      */
     init: function () {
         let self = this;
         return new Promise(function (resolve, reject) {
-            self.contract = new window.caver.klay.Contract(
-                connection.abi,
-                "0x70833A8Db44Be18a80c9D5F698e952A5d93ED0ec"
-            );
+            try {
+                self.contract = new window.caver.klay.Contract(
+                    connection.abi,
+                    "0x70833A8Db44Be18a80c9D5F698e952A5d93ED0ec"
+                );
+            }catch (e) {
+            }
+            let _caver = new Caver("https://public-node-api.klaytnapi.com/v1/baobab");
+            self.caverContract = new _caver.klay.Contract(connection.abi, "0x70833A8Db44Be18a80c9D5F698e952A5d93ED0ec");
             resolve();
         });
     },
@@ -176,8 +183,9 @@ const Connection = {
      */
     getAllNFTs: function () {
         let self = this;
+
         return new Promise(function (resolve, reject) {
-            self.contract.methods
+            self.caverContract.methods
                 .getAllNFTs()
                 .call()
                 .then((NFTs) => resolve(NFTs))

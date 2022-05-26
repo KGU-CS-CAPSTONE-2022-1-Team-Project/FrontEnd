@@ -151,12 +151,12 @@ export default {
                     axios.get(NFT.tokenURI).then((result) => {
                       resolve(Object.assign(result.data, NFT));
                     }).catch((err) => {
-                      console.log(err);
-                      reject();
+                      resolve(undefined)
                     });
                   })
                 })
             ).then((NFTs) => {
+                  NFTs = NFTs.filter(NFT => NFT !== undefined)
                   this.NFTData = NFTs;
                   this.allPosts = NFTs;
                   this.fetchData();
