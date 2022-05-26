@@ -172,7 +172,7 @@ export default {
     },
     retrieveNicknames: function () {
       Object.keys(this.nicknames).map(async (address) => {
-        axios.get(`/common/nickname/${address}`).then((res) => {
+        axios.get(`https://capston-blockapp.greenflamingo.dev:10321/common/nickname/${address.toLowerCase()}`).then((res) => {
           this.$set(this.nicknames, address, res.data.nickname);
         })
       })
