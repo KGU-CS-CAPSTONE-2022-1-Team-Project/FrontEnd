@@ -8,9 +8,8 @@
           <v-carousel
               style="margin-top: 1%"
               progress
-              height = '900'
               hide-delimiter-background
-
+              height='auto'
               reverse-transition="fade-transition"
               transition="fade-transition"
           >
@@ -25,13 +24,14 @@
     </div>
     <br>
     <hr>
-    <Footer />
+    <Footer/>
   </v-app>
 </template>
 <script>
 import Footer from '../components/Footer.vue'
+
 export default {
-  data () {
+  data() {
     return {
       a: [],
       items: [{src: 'https://kr.object.ncloudstorage.com/help-image/installkaikas.png'},
@@ -58,24 +58,24 @@ export default {
     }
   }
   ,
-  components : {
+  components: {
     Footer,
   }
 }
 </script>
 <style scoped>
-#app{
+#app {
   overflow: hidden;
-  margin:0;
-  background-image: url("../assets/bgg.jpg");
+  margin: 0;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
-#title{
-  color:white;
+
+#title {
+  color: white;
   font-size: 60px;
-  font-family:Georgia, 'Times New Roman', Times, serif;
+  font-family: Georgia, 'Times New Roman', Times, serif;
   text-align: center;
 }
 </style>
