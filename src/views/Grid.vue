@@ -14,8 +14,11 @@
             <div class="card-body">
               <div class="text-left">
                 <v-row>
-                  <v-col sm="9">
-                    <div class="post_title">{{ post.name }}</div>
+                  <v-col sm="12">
+                    <div class="post_title"
+                         style="width: 250px;text-overflow:ellipsis;overflow:hidden; white-space:nowrap;">
+                      {{ post.name }}
+                    </div>
                     <div class="post_maker">
                       {{ "Created by " + displayUserName(post.creator) }}
                       <button @click="test(index)" v-clipboard:copy="post.creator">
@@ -38,17 +41,8 @@
                 </v-row>
                 <hr>
                 <v-row class="btn-mdi">
-                  <v-col v-if="fill" sm="9" class="btn-heart">
-                    <v-btn color="red" v-on:click="FillIn" icon>
-                      <v-icon small>mdi-cards-heart-outline</v-icon>
-                    </v-btn>
-                    {{ count }}
-                  </v-col>
-                  <v-col v-else sm="9" class="btn-heart">
-                    <v-btn color="red" v-on:click="FillOut" icon>
-                      <v-icon small>mdi-cards-heart</v-icon>
-                    </v-btn>
-                    {{ count }}
+                  <v-col sm="9" class="btn-heart">
+
                   </v-col>
                   <v-col sm="3" class="btn-dots">
                     <v-btn color="black" icon

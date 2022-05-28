@@ -1,115 +1,81 @@
 <template>
-<v-app>
+  <v-app>
     <div id="app" flat>
-      <v-main class="grey lighten-3">
-      
-        <v-row>
-          
-          <v-col
-            cols="12"
-            sm="2"
-          >
-            <v-sheet
-              rounded="lg"
-              min-height="268"
-            >
-            왼쪽
-              
-            </v-sheet>
-          </v-col>
+      <v-row align="center" justify="center" v-bind:style="{ height: deviceHeight * 0.6 + 'px',}">
+        <v-col style="margin-top: 1%" cols="12" sm="10" ref="div1">
+          <v-btn v-on:click="wallet" elevation="2">지갑</v-btn>
+          <v-btn style="margin-left: 5px" v-on:click="register" elevation="2">회원가입</v-btn>
+          <v-carousel
+              style="margin-top: 1%"
+              progress
+              height = '900'
+              hide-delimiter-background
 
-          <v-col
-            cols="12"
-            sm="12"
+              reverse-transition="fade-transition"
+              transition="fade-transition"
           >
-            <v-sheet
-              min-height="70vh"
-              rounded="lg"
-            >
-              <!-- 중간부분 -->
-              
-              <router-view></router-view>
-            </v-sheet>
-          </v-col>
-          
-          <v-col
-            cols="12"
-            sm="2"
-          >
-            <v-sheet
-              rounded="lg"
-              min-height="268"
-            >
-            오른쪽
-                
-            </v-sheet>
-          </v-col>
-        </v-row>
-    </v-main>
-          <v-col id="title">우리 사이트를 200% 이용하는 방법</v-col>
-          <v-row align="center" justify="center" v-bind:style="{ height: deviceHeight * 0.6 + 'px',}">
-            <v-col cols="12" sm="10" ref="div1">
-              <v-carousel
-                progress
-                height = '700'
-                hide-delimiter-background
-                
-                reverse-transition="fade-transition"
-                transition="fade-transition"
-              >
-                <v-carousel-item
-                    v-for="(item,i) in items"
-                    :key="i"
-                    :src="item.src"
-                ></v-carousel-item>
-              </v-carousel>
-          </v-col>
-          </v-row>
+            <v-carousel-item
+                v-for="(item,i) in a"
+                :key="i"
+                :src="item"
+            ></v-carousel-item>
+          </v-carousel>
+        </v-col>
+      </v-row>
     </div>
     <br>
-          <hr>
-        <Footer />
-</v-app>
+    <hr>
+    <Footer />
+  </v-app>
 </template>
 <script>
 import Footer from '../components/Footer.vue'
-  export default {
-    data () {
-      return {
-        items: [
-          {
-            src: 'https://c8.alamy.com/comp/2F5730F/step-1-handwritten-on-a-white-background-2F5730F.jpg',
-          },
-          {
-            src: 'https://c8.alamy.com/comp/2F5730J/step-2-handwritten-on-a-white-background-2F5730J.jpg',
-          },
-          {
-            src: 'https://c8.alamy.com/comp/2F5730M/step-3-handwritten-on-a-white-background-2F5730M.jpg',
-          },
-          {
-            src: 'https://thumbs.dreamstime.com/z/step-handwritten-white-background-215885115.jpg',
-          },
-        ],
-      }
+export default {
+  data () {
+    return {
+      a: [],
+      items: [{src: 'https://kr.object.ncloudstorage.com/help-image/installkaikas.png'},
+        {src: 'https://kr.object.ncloudstorage.com/help-image/agreekaikas.png'},
+        {src: 'https://kr.object.ncloudstorage.com/help-image/registerKaikas.png'}],
+      items2: [{src: 'https://kr.object.ncloudstorage.com/help-image/loginArtBlock.png'},
+        {src: 'https://kr.object.ncloudstorage.com/help-image/userRegisterArtBlock.png'},
+        {src: 'https://kr.object.ncloudstorage.com/help-image/orignalRegisterArtBlock.png'}],
+      flag: false,
+    }
+  },
+  methods: {
+    wallet() {
+      this.a = this.items
+      this.flag = true
     },
-      components : {
+    register() {
+      this.a = this.items2
+      this.flag = false
+    },
+    upload() {
+      this.a = this.items3
+      this.flag = false
+    }
+  }
+  ,
+  components : {
     Footer,
   }
-  }
+}
 </script>
 <style scoped>
 #app{
-    overflow: hidden;
-    margin:0;
-    background-image: url("../assets/bgg.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+  overflow: hidden;
+  margin:0;
+  background-image: url("../assets/bgg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
-  #title{
-    color:white;
-    font-size: 60px;
-    font-family:Georgia, 'Times New Roman', Times, serif;
-    text-align: center;
-  }
+#title{
+  color:white;
+  font-size: 60px;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  text-align: center;
+}
 </style>

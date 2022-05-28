@@ -83,6 +83,9 @@ export default {
   },
   components: {},
   created: function () {
+    klaytn.on('accountsChanged', function(accounts) {
+      window.location.reload();
+    })
     this.blank = window.location.pathname.includes("redirect");
     if (this.isLogin && !window.klaytn.isConnected()) {
       this.logoutEx()
