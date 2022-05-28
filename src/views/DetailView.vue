@@ -75,8 +75,8 @@
                         Creator
                       </tr>
                       <tr class="producer">
-                        {{ displayUserName(now.contractOwner) }}
-                        <button @click="test(index)" v-clipboard:copy="now.contractOwner">
+                        {{ displayUserName(now.creator) }}
+                        <button @click="test(index)" v-clipboard:copy="now.creator">
                           <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px" height="30px"
                                viewBox="0 0 30 30" enable-background="new 0 0 30 30" xml:space="preserve">  <image
@@ -100,8 +100,8 @@
                         Streamer
                       </tr>
                       <tr class="producer">
-                        {{ displayUserName(now.creator) }}
-                        <button @click="test(index)" v-clipboard:copy="now.creator">
+                        {{ displayUserName(now.contractOwner) }}
+                        <button @click="test(index)" v-clipboard:copy="now.contractOwner">
                           <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px" height="30px"
                                viewBox="0 0 30 30" enable-background="new 0 0 30 30" xml:space="preserve">  <image
