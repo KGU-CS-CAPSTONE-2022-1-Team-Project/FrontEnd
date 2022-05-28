@@ -18,7 +18,7 @@ const Connection = {
                 );
             } catch (e) {
             }
-            let _caver = new Caver("https://public-node-api.klaytnapi.com/v1/baobab");
+            let _caver = new Caver("https://api.baobab.klaytn.net:8651");
             self.caverContract = new _caver.klay.Contract(connection.abi, self.contractAddress);
             resolve();
         });
