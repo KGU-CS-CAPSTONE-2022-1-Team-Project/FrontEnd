@@ -24,7 +24,7 @@ const api = {
     },
     getNickname(address) {
         return new Promise((resolve, reject) => {
-            let url = server + '/common/nickname' + address;
+            let url = server + '/common/nickname/' + address;
             axios.get(url).then(response => {
                 console.log(response.data)
                 resolve(response)
