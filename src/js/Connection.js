@@ -4,6 +4,7 @@ import Caver from 'caver-js';
 const Connection = {
     contract: null,
     caverContract: null,
+    contractAddress: "0x09EDf29F4De5d652336FbFD886c8d008F173edf6",
     /**
      * initialize Connection wrapper object
      */
@@ -13,12 +14,12 @@ const Connection = {
             try {
                 self.contract = new window.caver.klay.Contract(
                     connection.abi,
-                    "0x70833A8Db44Be18a80c9D5F698e952A5d93ED0ec"
+                    self.contractAddress
                 );
-            }catch (e) {
+            } catch (e) {
             }
             let _caver = new Caver("https://public-node-api.klaytnapi.com/v1/baobab");
-            self.caverContract = new _caver.klay.Contract(connection.abi, "0x70833A8Db44Be18a80c9D5F698e952A5d93ED0ec");
+            self.caverContract = new _caver.klay.Contract(connection.abi, self.contractAddress);
             resolve();
         });
     },
